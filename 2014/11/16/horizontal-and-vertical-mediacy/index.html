@@ -9,14 +9,7 @@
     
     <meta name="author" content="teddywow">
     
-    <meta name="description" content="一、水平居中
-1、左右外边距设为auto
-.center{ margin:0 auto; }
-2、display:inline-block + 水平对齐居中
-.parent{ text-align:center; } 
-.child{ display:inline-block; }
-
-子元素设为行内">
+    <meta name="description" content="简单介绍水平居中和垂直居中的各种实现方法，每种方法的利弊和应用场景。">
     
     
     
@@ -81,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-16T09:20:05.000Z" itemprop="datePublished">11月 16 2014</time>
-    更新日期:<time datetime="2014-11-16T09:26:14.000Z" itemprop="dateModified">11月 16 2014</time>
+    更新日期:<time datetime="2014-11-16T09:43:22.000Z" itemprop="dateModified">11月 16 2014</time>
     
   </p>
 </header>
@@ -93,7 +86,8 @@
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一、水平居中"><span class="toc-number">1.</span> <span class="toc-text">一、水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、左右外边距设为auto"><span class="toc-number">1.1.</span> <span class="toc-text">1、左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、display:inline-block_+_水平对齐居中"><span class="toc-number">1.2.</span> <span class="toc-text">2、display:inline-block + 水平对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、position:absolut;left:50%_+_负值左外边距"><span class="toc-number">1.3.</span> <span class="toc-text">3、position:absolut;left:50% + 负值左外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、position:absolut;left:50%_+_向左移动"><span class="toc-number">1.4.</span> <span class="toc-text">4、position:absolut;left:50% + 向左移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、position:absolute;left:0;right:0_+_左右外边距设为auto"><span class="toc-number">1.5.</span> <span class="toc-text">5、position:absolute;left:0;right:0 + 左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、display:flex"><span class="toc-number">1.6.</span> <span class="toc-text">6、display:flex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二、垂直居中"><span class="toc-number">2.</span> <span class="toc-text">二、垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1、display:inline-block_+_垂直对齐居中"><span class="toc-number">2.1.</span> <span class="toc-text">1、display:inline-block + 垂直对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2、display:table-cell_+_垂直对齐居中"><span class="toc-number">2.2.</span> <span class="toc-text">2、display:table-cell + 垂直对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3、position:absolut;top:50%_+_负值上外边距"><span class="toc-number">2.3.</span> <span class="toc-text">3、position:absolut;top:50% + 负值上外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4、position:absolut;top:50%_+_向上移动"><span class="toc-number">2.4.</span> <span class="toc-text">4、position:absolut;top:50% + 向上移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5、position:absolute;top:0;bottom:0_+_上下外边距设为auto"><span class="toc-number">2.5.</span> <span class="toc-text">5、position:absolute;top:0;bottom:0 + 上下外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6、display:flex-1"><span class="toc-number">2.6.</span> <span class="toc-text">6、display:flex</span></a></li></ol></li></ol>
 		</div>
 		
-		<h2 id="一、水平居中">一、水平居中</h2>
+		<p>简单介绍水平居中和垂直居中的各种实现方法，每种方法的利弊和应用场景。<br><a id="more"></a></p>
+<h2 id="一、水平居中">一、水平居中</h2>
 <h3 id="1、左右外边距设为auto">1、左右外边距设为auto</h3>
 <pre><code><span class="class">.center</span><span class="rules">{ <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>; <span class="rule">}</span></span>
 </code></pre><h3 id="2、display:inline-block_+_水平对齐居中">2、display:inline-block + 水平对齐居中</h3>
@@ -177,7 +171,7 @@
 
   <div class="article-tags">
   
-  <span></span> <a href="/tags/水平居中，垂直居中，水平垂直居中各种实现方法/">水平居中，垂直居中，水平垂直居中各种实现方法</a>
+  <span></span> <a href="/tags/水平垂直居中/">水平垂直居中</a><a href="/tags/css/">css</a>
   </div>
 
 
@@ -192,19 +186,6 @@
 </footer>   	       
 	</article>
 	
-<nav class="article-nav clearfix">
- 
-
-<div class="next">
-<a href="/2014/11/09/hello-world/"  title="Hello World">
- <strong>NEXT:</strong><br/> 
- <span>Hello World
-</span>
-</a>
-</div>
-
-</nav>
-
 	
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
@@ -225,7 +206,11 @@
 	<p class="asidetitle">标签</p>
 		<ul class="clearfix">
 		
-			<li><a href="/tags/水平居中，垂直居中，水平垂直居中各种实现方法/" title="水平居中，垂直居中，水平垂直居中各种实现方法">水平居中，垂直居中，水平垂直居中各种实现方法<sup>1</sup></a></li>
+			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平居中，垂直居中，水平垂直居中各种实现方法/" title="水平居中，垂直居中，水平垂直居中各种实现方法">水平居中，垂直居中，水平垂直居中各种实现方法<sup>0</sup></a></li>
 		
 		</ul>
 </div>
