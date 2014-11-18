@@ -4,12 +4,12 @@
 <head>
   <meta charset="UTF-8">
   
-    <title>水平、垂直居中方法集 | TeddyWow&#39;s blog</title>
+    <title>水平、垂直居中方法集合 | TeddyWow&#39;s blog</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="teddywow">
     
-    <meta name="description" itemprop="description" content="简单介绍水平居中和垂直居中的各种实现方法，每种方法的利弊和应用场景。">
+    <meta name="description" itemprop="description" content="简单介绍水平居中和垂直居中的各种实现方法，每种方法的利弊。">
     
     
     
@@ -66,7 +66,7 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/11/16/horizontal-and-vertical-mediacy/" title="水平、垂直居中方法集" itemprop="url">水平、垂直居中方法集</a>
+      <a href="/2014/11/16/horizontal-and-vertical-mediacy/" title="水平、垂直居中方法集合" itemprop="url">水平、垂直居中方法集合</a>
   </h1>
   <p class="article-author">By
     
@@ -74,15 +74,20 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-16T09:20:05.000Z" itemprop="datePublished">11月 16 2014</time>
-    更新日期:<time datetime="2014-11-16T15:38:06.000Z" itemprop="dateModified">11月 16 2014</time>
+    更新日期:<time datetime="2014-11-18T14:20:04.000Z" itemprop="dateModified">11月 18 2014</time>
     
   </p>
 </header>
 	<div class="article-content">
 		
 		
-		<h2 id="一、水平居中">一、水平居中</h2>
-<h3 id="1、左右外边距设为auto">1、左右外边距设为auto</h3>
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#水平居中"><span class="toc-number">1.</span> <span class="toc-text">水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#左右外边距设为auto"><span class="toc-number">1.1.</span> <span class="toc-text">左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:inline-block_+_水平对齐居中"><span class="toc-number">1.2.</span> <span class="toc-text">display:inline-block + 水平对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;left:50%_+_负值左外边距"><span class="toc-number">1.3.</span> <span class="toc-text">position:absolut;left:50% + 负值左外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;left:50%_+_向左移动"><span class="toc-number">1.4.</span> <span class="toc-text">position:absolut;left:50% + 向左移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolute;left:0;right:0_+_左右外边距设为auto"><span class="toc-number">1.5.</span> <span class="toc-text">position:absolute;left:0;right:0 + 左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:flex"><span class="toc-number">1.6.</span> <span class="toc-text">display:flex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#line-height"><span class="toc-number">2.1.</span> <span class="toc-text">line-height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:table-cell_+_垂直对齐居中"><span class="toc-number">2.2.</span> <span class="toc-text">display:table-cell + 垂直对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;top:50%_+_负值上外边距"><span class="toc-number">2.3.</span> <span class="toc-text">position:absolut;top:50% + 负值上外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;top:50%_+_向上移动"><span class="toc-number">2.4.</span> <span class="toc-text">position:absolut;top:50% + 向上移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolute;top:0;bottom:0_+_上下外边距设为auto"><span class="toc-number">2.5.</span> <span class="toc-text">position:absolute;top:0;bottom:0 + 上下外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:flex-1"><span class="toc-number">2.6.</span> <span class="toc-text">display:flex</span></a></li></ol></li></ol>
+		</div>
+		
+		<h2 id="水平居中">水平居中</h2>
+<h3 id="左右外边距设为auto">左右外边距设为auto</h3>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"wrap"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
 
 
@@ -90,7 +95,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">30px</span> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/hmed1.png" alt="水平居中"></p>
-<h3 id="2、display:inline-block_+_水平对齐居中">2、display:inline-block + 水平对齐居中</h3>
+<h3 id="display:inline-block_+_水平对齐居中">display:inline-block + 水平对齐居中</h3>
 <ul>
 <li>子元素设为行内块元素，父元素水平对齐方式设为居中</li>
 <li>可有多个子元素同时水平居中</li>
@@ -103,29 +108,29 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">30px</span> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box-1</span>,<span class="class">.box-2</span>,<span class="class">.box-3</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> <span class="number">10px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/hmed2.png" alt="水平居中"></p>
-<h3 id="3、position:absolut;left:50%_+_负值左外边距">3、position:absolut;left:50% + 负值左外边距</h3>
+<h3 id="position:absolut;left:50%_+_负值左外边距">position:absolut;left:50% + 负值左外边距</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，left设为50%，然后使用负左边距向左移动自身宽度的一半</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>left</code>设为50%，然后使用负左边距向左移动自身宽度的一半</li>
 <li>居中的元素宽度要固定</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">30px</span> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">30px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">50%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-left</span>:<span class="value"> -<span class="number">50px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<h3 id="4、position:absolut;left:50%_+_向左移动">4、position:absolut;left:50% + 向左移动</h3>
+<h3 id="position:absolut;left:50%_+_向左移动">position:absolut;left:50% + 向左移动</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，left设为50%，然后使用translate(-50%,0)向左移动自身宽度的一半</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>left</code>设为50%，然后使用<code>translate(-50%,0)</code>向左移动自身宽度的一半</li>
 <li>居中元素宽度无需固定</li>
 <li>使用css3需要考虑兼容性问题</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span>{</div><div class="line">    <span class="attribute">width</span><span class="value">:<span class="number">300px</span>;</span></div><div class="line">    <span class="attribute">height</span><span class="value">:<span class="number">50px</span>;</span></div><div class="line">    <span class="attribute">padding</span><span class="value">: <span class="number">30px</span> <span class="number">0</span>;</span></div><div class="line">    <span class="attribute">background-color</span><span class="value">: <span class="hexcolor">#333</span>;</span></div><div class="line">    <span class="attribute">position</span><span class="value">: relative;</span></div><div class="line">}</div><div class="line"><span class="class">.box</span>{</div><div class="line">    <span class="attribute">width</span><span class="value">:<span class="number">100px</span>;</span></div><div class="line">    <span class="attribute">height</span><span class="value">:<span class="number">50px</span>;</span></div><div class="line">    <span class="attribute">background-color</span><span class="value">: <span class="hexcolor">#008fb5</span>;</span></div><div class="line">    <span class="attribute">position</span><span class="value">: absolute;</span></div><div class="line">    <span class="attribute">top</span><span class="value">:<span class="number">80px</span>;</span></div><div class="line">    <span class="attribute">left</span><span class="value">:<span class="number">50%</span>;</span></div><div class="line">    <span class="function">-moz-translate</span>(-50%,0);</div><div class="line">    <span class="function">-o-translate</span>(-50%,0);</div><div class="line">    <span class="function">-ms-translate</span>(-50%,0);</div><div class="line">    <span class="function">-webkit-translate</span>(-50%,0);</div><div class="line">    <span class="function">translate</span>(-50%,0);</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<h3 id="5、position:absolute;left:0;right:0_+_左右外边距设为auto">5、position:absolute;left:0;right:0 + 左右外边距设为auto</h3>
+<h3 id="position:absolute;left:0;right:0_+_左右外边距设为auto">position:absolute;left:0;right:0 + 左右外边距设为auto</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，left设为0，right设为0，左右外边距设为auto</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>left</code>设为0，<code>right</code>设为0，左右外边距设为<code>auto</code></li>
 <li>居中元素宽度无需固定</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">90px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">30px</span> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<h3 id="6、display:flex">6、display:flex</h3>
+<h3 id="display:flex">display:flex</h3>
 <ul>
 <li>父元素设伸缩容器，并定义伸缩项目水平对齐方法为居中</li>
 <li>居中子元素数量不固定</li>
@@ -134,8 +139,8 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">90px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">30px</span> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">flex</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">justify-content</span>:<span class="value">center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="二、垂直居中">二、垂直居中</h2>
-<h3 id="1、line-height">1、line-height</h3>
+<h2 id="垂直居中">垂直居中</h2>
+<h3 id="line-height">line-height</h3>
 <ul>
 <li>单行文字垂直居中，把垂直对齐方式设为居中</li>
 </ul>
@@ -145,7 +150,7 @@
 
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{ </span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">110px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"><span class="number">60px</span></span></span>; </div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<h3 id="2、display:table-cell_+_垂直对齐居中">2、display:table-cell + 垂直对齐居中</h3>
+<h3 id="display:table-cell_+_垂直对齐居中">display:table-cell + 垂直对齐居中</h3>
 <ul>
 <li>父元素显示为块级表格，子元素显示为表格单元格，垂直对齐方式设为居中,子元素内的内容垂直居中</li>
 <li>内容可以有多个元素，可实现多行垂直居中</li>
@@ -157,29 +162,29 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">110px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> table</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> table-cell</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">vertical-align</span>:<span class="value"> middle</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.inner-1</span>,<span class="class">.inner-2</span>,<span class="class">.inner-3</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">20px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">10px</span> auto</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
 <p><img src="/images/vmed1.png" alt="垂直居中"></p>
-<h3 id="3、position:absolut;top:50%_+_负值上外边距">3、position:absolut;top:50% + 负值上外边距</h3>
+<h3 id="position:absolut;top:50%_+_负值上外边距">position:absolut;top:50% + 负值上外边距</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，top设为50%，然后使用负上边距向左移动自身高度的一半</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>top</code>设为50%，然后使用负上边距向左移动自身高度的一半</li>
 <li>居中的元素高度要固定</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">110px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">50%</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-top</span>:<span class="value"> -<span class="number">25px</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<h3 id="4、position:absolut;top:50%_+_向上移动">4、position:absolut;top:50% + 向上移动</h3>
+<h3 id="position:absolut;top:50%_+_向上移动">position:absolut;top:50% + 向上移动</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，top设为50%，然后使用translate(0,-50%)向上移动自身高度的一半</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>top</code>设为50%，然后使用<code>translate(0,-50%)</code>向上移动自身高度的一半</li>
 <li>居中元素高度无需固定</li>
 <li>使用css3需要考虑兼容性</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span>{</div><div class="line">    <span class="attribute">width</span><span class="value">:<span class="number">300px</span>;</span></div><div class="line">    <span class="attribute">height</span><span class="value">:<span class="number">110px</span>;</span></div><div class="line">    <span class="attribute">background-color</span><span class="value">: <span class="hexcolor">#333</span>;</span></div><div class="line">    <span class="attribute">position</span><span class="value">: relative;</span></div><div class="line">}</div><div class="line"><span class="class">.box</span>{</div><div class="line">    <span class="attribute">width</span><span class="value">:<span class="number">100px</span>;</span></div><div class="line">    <span class="attribute">height</span><span class="value">: <span class="number">50px</span>;</span></div><div class="line">    <span class="attribute">background-color</span><span class="value">: <span class="hexcolor">#008fb5</span>;</span></div><div class="line">    <span class="attribute">position</span><span class="value">: absolute;</span></div><div class="line">    <span class="attribute">left</span><span class="value">: <span class="number">100px</span>;</span></div><div class="line">    <span class="attribute">top</span><span class="value">:<span class="number">50%</span>;</span></div><div class="line">    <span class="function">-moz-translate</span>(0,-50%);</div><div class="line">    <span class="function">-o-translate</span>(0,-50%);</div><div class="line">    <span class="function">-ms-translate</span>(0,-50%);</div><div class="line">    <span class="function">-webkit-translate</span>(0,-50%);</div><div class="line">    <span class="function">translate</span>(0,-50%);</div><div class="line">}</div></pre></td></tr></table></figure>
 
-<h3 id="5、position:absolute;top:0;bottom:0_+_上下外边距设为auto">5、position:absolute;top:0;bottom:0 + 上下外边距设为auto</h3>
+<h3 id="position:absolute;top:0;bottom:0_+_上下外边距设为auto">position:absolute;top:0;bottom:0 + 上下外边距设为auto</h3>
 <ul>
-<li>父元素设相对定位，子元素设绝对定位，top设为0，bottom设为0，上下外边距设为auto</li>
+<li>父元素设相对定位，子元素设绝对定位，<code>top</code>设为0，<code>bottom</code>设为0，上下外边距设为<code>auto</code></li>
 <li>居中元素宽度无需固定</li>
 </ul>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="class">.wrap</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">110px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#008fb5</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value">auto <span class="number">0</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
 
-<h3 id="6、display:flex-1">6、display:flex</h3>
+<h3 id="display:flex-1">display:flex</h3>
 <ul>
 <li>父元素设伸缩容器，并定义伸缩项目水平对齐方法为居中</li>
 <li>使用css3需要考虑兼容性</li>
@@ -200,16 +205,34 @@
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/11/16/horizontal-and-vertical-mediacy/" data-title="水平、垂直居中方法集 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2014/11/16/horizontal-and-vertical-mediacy/" data-title="水平、垂直居中方法集合 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
 </footer>   	       
 	</article>
 	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2014/11/18/create-object-model/" title="创建对象的7种模式">
+  <strong>PREVIOUS:</strong><br/>
+  <span>
+  创建对象的7种模式</span>
+</a>
+</div>
+
+
+</nav>
+
 	
 </div>  
       <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#水平居中"><span class="toc-number">1.</span> <span class="toc-text">水平居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#左右外边距设为auto"><span class="toc-number">1.1.</span> <span class="toc-text">左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:inline-block_+_水平对齐居中"><span class="toc-number">1.2.</span> <span class="toc-text">display:inline-block + 水平对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;left:50%_+_负值左外边距"><span class="toc-number">1.3.</span> <span class="toc-text">position:absolut;left:50% + 负值左外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;left:50%_+_向左移动"><span class="toc-number">1.4.</span> <span class="toc-text">position:absolut;left:50% + 向左移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolute;left:0;right:0_+_左右外边距设为auto"><span class="toc-number">1.5.</span> <span class="toc-text">position:absolute;left:0;right:0 + 左右外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:flex"><span class="toc-number">1.6.</span> <span class="toc-text">display:flex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#垂直居中"><span class="toc-number">2.</span> <span class="toc-text">垂直居中</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#line-height"><span class="toc-number">2.1.</span> <span class="toc-text">line-height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:table-cell_+_垂直对齐居中"><span class="toc-number">2.2.</span> <span class="toc-text">display:table-cell + 垂直对齐居中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;top:50%_+_负值上外边距"><span class="toc-number">2.3.</span> <span class="toc-text">position:absolut;top:50% + 负值上外边距</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolut;top:50%_+_向上移动"><span class="toc-number">2.4.</span> <span class="toc-text">position:absolut;top:50% + 向上移动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#position:absolute;top:0;bottom:0_+_上下外边距设为auto"><span class="toc-number">2.5.</span> <span class="toc-text">position:absolute;top:0;bottom:0 + 上下外边距设为auto</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display:flex-1"><span class="toc-number">2.6.</span> <span class="toc-text">display:flex</span></a></li></ol></li></ol>
+  </div>
 
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -224,9 +247,11 @@
 		
 			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
 		
-			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>1</sup></a></li>
 		
-			<li><a href="/tags/水平居中，垂直居中，水平垂直居中各种实现方法/" title="水平居中，垂直居中，水平垂直居中各种实现方法">水平居中，垂直居中，水平垂直居中各种实现方法<sup>0</sup></a></li>
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
 		
 		</ul>
 </div>
@@ -292,6 +317,8 @@ $(document).ready(function(){
       m.removeClass('moveMain');
       a.css('display', 'block').removeClass('fadeOut');
       o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
         
     }
   });
