@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-19T13:00:05.000Z" itemprop="datePublished">11月 19 2014</time>
-    更新日期:<time datetime="2014-11-19T13:21:32.000Z" itemprop="dateModified">11月 19 2014</time>
+    更新日期:<time datetime="2014-11-19T15:34:44.000Z" itemprop="dateModified">11月 19 2014</time>
     
   </p>
 </header>
@@ -120,7 +120,7 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function <span class="type">Foo</span>(){</div><div class="line">	this.<span class="keyword">method</span>=function(){</div><div class="line">		alert(this);</div><div class="line">	};</div><div class="line">}</div><div class="line"><span class="keyword">var</span> fo=new <span class="type">Foo</span>();</div><div class="line">fo.<span class="keyword">method</span>();  //<span class="string">"fo"</span></div></pre></td></tr></table></figure>
 
 <h2 id="函数使用apply或call调用">函数使用apply或call调用</h2>
-<p>函数使用<code>apply</code>或<code>call</code>调用时，<code>this</code>指向<code>apply</code>或<code>call</code>的第一个对象参数<code>，obj1.fn.apply(obj2)</code>改变了<code>obj1</code>对象里<code>fn()</code>函数的执行环境，改变为<code>obj2</code>，<code>fn()</code>函数的this绑定到指定执行环境，等于<code>obj2</code>。</p>
+<p>函数使用<code>apply</code>或<code>call</code>调用时，<code>this</code>指向<code>apply</code>或<code>call</code>的第一个对象参数，<code>obj1.fn.apply(obj2)</code>改变了<code>obj1</code>对象里<code>fn()</code>函数的执行环境，改变为<code>obj2</code>，<code>fn()</code>函数的this绑定到指定执行环境，等于<code>obj2</code>。</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1={</div><div class="line">	name:<span class="string">"obj1"</span>,</div><div class="line">	getName:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		alert(<span class="keyword">this</span>.name);</div><div class="line">	}</div><div class="line">}</div><div class="line"><span class="keyword">var</span> obj2={</div><div class="line">	name:<span class="string">"obj2"</span></div><div class="line">}</div><div class="line">obj1.getName.apply(obj2);  <span class="comment">//"obj2"</span></div></pre></td></tr></table></figure>
 
 <h2 id="this优先级">this优先级</h2>
