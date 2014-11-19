@@ -1,0 +1,351 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>浅谈this对象 | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="简单介绍this对象在不同函数中的指向问题，辨别this真正指向的对象。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/19/this-object/" title="浅谈this对象" itemprop="url">浅谈this对象</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-19T13:00:05.000Z" itemprop="datePublished">11月 19 2014</time>
+    更新日期:<time datetime="2014-11-19T13:21:32.000Z" itemprop="dateModified">11月 19 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为事件方法调用"><span class="toc-number">1.</span> <span class="toc-text">函数作为事件方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为对象方法调用"><span class="toc-number">2.</span> <span class="toc-text">函数作为对象方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为普通函数调用"><span class="toc-number">3.</span> <span class="toc-text">函数作为普通函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时器setTimeout()中函数"><span class="toc-number">4.</span> <span class="toc-text">定时器setTimeout()中函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为构造函数调用"><span class="toc-number">5.</span> <span class="toc-text">函数作为构造函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数使用apply或call调用"><span class="toc-number">6.</span> <span class="toc-text">函数使用apply或call调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this优先级"><span class="toc-number">7.</span> <span class="toc-text">this优先级</span></a></li></ol>
+		</div>
+		
+		<p><code>this</code>对象是在运行时基于函数的执行环境绑定的，函数在不同情况被调用时，<code>this</code>会指向不同对象，下面来看看函数调用的各种情况中的<code>this</code>指向。</p>
+<h2 id="函数作为事件方法调用">函数作为事件方法调用</h2>
+<p>函数中的<code>this</code>指向触发事件的对象。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="property">id</span>=<span class="string">"box"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> box=<span class="built_in">document</span>.getElementById(<span class="string">'box'</span>);</div><div class="line">box.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="keyword">this</span>.id); <span class="comment">//"box"</span></div><div class="line">})</div></pre></td></tr></table></figure>
+
+<h2 id="函数作为对象方法调用">函数作为对象方法调用</h2>
+<p>当函数被作为某个对象的方法调用时，函数中的<code>this</code>等于那个对象（非严格模式），等于<code>undefined</code>（严格模式）。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name=<span class="string">"window"</span>;</div><div class="line"><span class="keyword">var</span> object={</div><div class="line">	name:<span class="string">"self"</span>,</div><div class="line">	getName:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		alert(<span class="keyword">this</span>.name);</div><div class="line">	}</div><div class="line">}</div><div class="line">object.getName(); <span class="comment">//"self"（非严格模式）</span></div></pre></td></tr></table></figure>
+
+<h2 id="函数作为普通函数调用">函数作为普通函数调用</h2>
+<p>在全局函数或匿名函数或闭包中的<code>this</code>等于<code>window</code>，相当于被<code>window</code>对象调用，原理函数作为对象方法调用时的情况。(在严格模式下，闭包中的<code>this</code>为<code>undefined</code>)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name=<span class="string">"window"</span>;</div><div class="line">function <span class="keyword">method</span>(){</div><div class="line">	<span class="keyword">var</span> name=<span class="string">"self"</span>;</div><div class="line">	alert(this.name);</div><div class="line">}</div><div class="line"><span class="keyword">method</span>(); //<span class="string">"self"</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name=<span class="string">"window"</span>;</div><div class="line"><span class="keyword">var</span> object={</div><div class="line">	name:<span class="string">"self"</span>,</div><div class="line">	getName:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			alert(<span class="keyword">this</span>.name);</div><div class="line">		}</div><div class="line">	}</div><div class="line">}</div><div class="line">object.getName()(); <span class="comment">//"window"（非严格模式）</span></div></pre></td></tr></table></figure>
+
+<p>以上代码调用<code>object.getName()</code>时返回一个匿名函数，再调用这个匿名函数时，相当于在全局执行环境中调用一个普通函数，因此<code>this</code>对象指向<code>window</code>。<br>每个函数在被调用时，其活动对象都会自动取得两个特殊变量：<code>this</code>和<code>arguments</code>。内部函数在搜索这两个变量时，只会搜索到其活动对象为止，因此永远不可能直接访问外部函数中的这两个变量。不过，把外部作用域中的this对象保存在一个闭包能访问的变量里，就可以让闭包访问该对象了，如下所示。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> name=<span class="string">"window"</span>;</div><div class="line"><span class="keyword">var</span> object={</div><div class="line">	name:<span class="string">"self"</span>,</div><div class="line">	getName:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		<span class="keyword">var</span> that=<span class="keyword">this</span>;</div><div class="line">		<span class="keyword">return</span> <span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">			alert(that.name);</div><div class="line">		}</div><div class="line">	}</div><div class="line">}</div><div class="line">object.getName()(); <span class="comment">//"self"（非严格模式）</span></div></pre></td></tr></table></figure>
+
+<p>在定义匿名函数前，我们把this对象赋值给了一个名叫that的变量，在定义闭包后，因为that变量在匿名函数的活动对象中，因此闭包也可以访问这个变量，即使在函数返回后，that也仍然引用着object。</p>
+<h2 id="定时器setTimeout()中函数">定时器setTimeout()中函数</h2>
+<p>定时器setTimeout()中函数的this指向window。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">setTimeout(function(){</div><div class="line">	alert(this);</div><div class="line">},<span class="number">1000</span>);   //<span class="string">"window"</span></div><div class="line"></div><div class="line"><span class="keyword">var</span> name=<span class="string">"window"</span>;</div><div class="line">function <span class="type">Foo</span>(){</div><div class="line">	this.name=<span class="string">"self"</span>;</div><div class="line">	this.<span class="keyword">method</span>=function(){</div><div class="line">		alert(this.name);	//此处的this是<span class="keyword">method</span>函数的this</div><div class="line">	};</div><div class="line">	setTimeout(this.<span class="keyword">method</span>,<span class="number">1000</span>); //此处的this是<span class="type">Foo</span>函数的this，指向<span class="type">Foo</span>的实例对象</div><div class="line">}</div><div class="line">new <span class="type">Foo</span>(); //<span class="string">"window"</span></div></pre></td></tr></table></figure>
+
+<h2 id="函数作为构造函数调用">函数作为构造函数调用</h2>
+<p>用new调用构造函数，函数中的this绑定到新创建的对象上。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function <span class="type">Foo</span>(){</div><div class="line">	this.<span class="keyword">method</span>=function(){</div><div class="line">		alert(this);</div><div class="line">	};</div><div class="line">}</div><div class="line"><span class="keyword">var</span> fo=new <span class="type">Foo</span>();</div><div class="line">fo.<span class="keyword">method</span>();  //<span class="string">"fo"</span></div></pre></td></tr></table></figure>
+
+<h2 id="函数使用apply或call调用">函数使用apply或call调用</h2>
+<p>函数使用<code>apply</code>或<code>call</code>调用时，<code>this</code>指向<code>apply</code>或<code>call</code>的第一个对象参数<code>，obj1.fn.apply(obj2)</code>改变了<code>obj1</code>对象里<code>fn()</code>函数的执行环境，改变为<code>obj2</code>，<code>fn()</code>函数的this绑定到指定执行环境，等于<code>obj2</code>。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> obj1={</div><div class="line">	name:<span class="string">"obj1"</span>,</div><div class="line">	getName:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">		alert(<span class="keyword">this</span>.name);</div><div class="line">	}</div><div class="line">}</div><div class="line"><span class="keyword">var</span> obj2={</div><div class="line">	name:<span class="string">"obj2"</span></div><div class="line">}</div><div class="line">obj1.getName.apply(obj2);  <span class="comment">//"obj2"</span></div></pre></td></tr></table></figure>
+
+<h2 id="this优先级">this优先级</h2>
+<p>若函数同时在以上情况下，要考虑`this优先级（从高到低）：</p>
+<ol>
+<li>作为构造函数调用new</li>
+<li>使用apply或call调用（与”作为构造函数调用new”并列第一，不能和new同时出现，会报错）</li>
+<li>定时器setTimeout()中函数</li>
+<li>作为事件调用</li>
+<li>作为方法调用</li>
+</ol>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/this对象/">this对象</a><a href="/tags/javascript/">javascript</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/11/19/this-object/" data-title="浅谈this对象 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/11/18/create-object-model/"  title="创建对象的7种模式">
+ <strong>NEXT:</strong><br/> 
+ <span>创建对象的7种模式
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为事件方法调用"><span class="toc-number">1.</span> <span class="toc-text">函数作为事件方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为对象方法调用"><span class="toc-number">2.</span> <span class="toc-text">函数作为对象方法调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为普通函数调用"><span class="toc-number">3.</span> <span class="toc-text">函数作为普通函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定时器setTimeout()中函数"><span class="toc-number">4.</span> <span class="toc-text">定时器setTimeout()中函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数作为构造函数调用"><span class="toc-number">5.</span> <span class="toc-text">函数作为构造函数调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#函数使用apply或call调用"><span class="toc-number">6.</span> <span class="toc-text">函数使用apply或call调用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#this优先级"><span class="toc-number">7.</span> <span class="toc-text">this优先级</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>2</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
