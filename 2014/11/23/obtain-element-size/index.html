@@ -1,0 +1,367 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>获取对象大小和定位 | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="介绍获取对象大小和定位坐标的各种方法，比较各种方法。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/11/23/obtain-element-size/" title="获取对象大小和定位" itemprop="url">获取对象大小和定位</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-11-23T08:12:15.000Z" itemprop="datePublished">11月 23 2014</time>
+    更新日期:<time datetime="2014-11-23T08:24:00.000Z" itemprop="dateModified">11月 23 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取对象大小"><span class="toc-number">1.</span> <span class="toc-text">获取对象大小</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-offsetWidth/offsetHeight"><span class="toc-number">1.1.</span> <span class="toc-text">elem.offsetWidth/offsetHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-clientWidth/clientHeight"><span class="toc-number">1.2.</span> <span class="toc-text">elem.clientWidth/clientHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-scrollWidth/scrollHeight"><span class="toc-number">1.3.</span> <span class="toc-text">elem.scrollWidth/scrollHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screen-width/screen-height"><span class="toc-number">1.4.</span> <span class="toc-text">window.screen.width/screen.height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screen-availWidth/screen-availHeight"><span class="toc-number">1.5.</span> <span class="toc-text">window.screen.availWidth/screen.availHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-innerWidth/innerHeight"><span class="toc-number">1.6.</span> <span class="toc-text">window.innerWidth/innerHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较获取浏览器窗口可见区域大小的方法"><span class="toc-number">1.7.</span> <span class="toc-text">比较获取浏览器窗口可见区域大小的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取对象定位"><span class="toc-number">2.</span> <span class="toc-text">获取对象定位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#offsetParent"><span class="toc-number">2.1.</span> <span class="toc-text">offsetParent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-offsetLeft/offsetTop"><span class="toc-number">2.2.</span> <span class="toc-text">elem.offsetLeft/offsetTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-scrollLeft/scrollTop"><span class="toc-number">2.3.</span> <span class="toc-text">elem.scrollLeft/scrollTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screenLeft/screenTop"><span class="toc-number">2.4.</span> <span class="toc-text">window.screenLeft/screenTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-clientX/Y"><span class="toc-number">2.5.</span> <span class="toc-text">event.clientX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-offsetX/Y"><span class="toc-number">2.6.</span> <span class="toc-text">event.offsetX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-screenX/Y"><span class="toc-number">2.7.</span> <span class="toc-text">event.screenX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-pageX/Y"><span class="toc-number">2.8.</span> <span class="toc-text">event.pageX/Y</span></a></li></ol></li></ol>
+		</div>
+		
+		<h2 id="获取对象大小">获取对象大小</h2>
+<h3 id="elem-offsetWidth/offsetHeight">elem.offsetWidth/offsetHeight</h3>
+<p>获取对象的可见宽度和高度，包括滚动条、边框、内边距，会随元素的显示大小改变。</p>
+<ul>
+<li>当对象为内联元素时，<code>offsetWidth</code>和<code>offsetHeight</code>可以得到正确的值。</li>
+<li><code>document.body.clientWidth/clientHeight</code><br>  获取<code>BODY</code>对象宽度和高度，随内容改变。</li>
+<li><code>document.documentElement.clientWidth/clientHeight</code><br>  获取浏览器窗口可见区域宽度和高度，不随内容改变。</li>
+</ul>
+<h3 id="elem-clientWidth/clientHeight">elem.clientWidth/clientHeight</h3>
+<p>获取对象可见的宽度和高度，不包括滚动条、边框，包括内边距，会随元素的显示大小改变。</p>
+<ul>
+<li>当对象为内联元素时，<code>clientWidth</code>和<code>clientHeight</code>无法得到值，显示为0。</li>
+</ul>
+<h3 id="elem-scrollWidth/scrollHeight">elem.scrollWidth/scrollHeight</h3>
+<p>获取对象的实际内容的宽度和高度，不包括滚动条、边框，包括内边距，会随对象中内容的多少改变（内容多了可能会改变对象的实际宽度和高度）。</p>
+<ul>
+<li>当对象为内联元素时，<code>scrollWidth</code>和<code>scrollHeight</code>无法得到值，显示为0。</li>
+</ul>
+<h3 id="window-screen-width/screen-height">window.screen.width/screen.height</h3>
+<p>获取屏幕分辨率的宽度和高度，包括滚动条，固定不变，与浏览器无关。</p>
+<h3 id="window-screen-availWidth/screen-availHeight">window.screen.availWidth/screen.availHeight</h3>
+<p>获取屏幕可用工作区宽度和高度，包括滚动条，固定不变，与浏览器无关。</p>
+<h3 id="window-innerWidth/innerHeight">window.innerWidth/innerHeight</h3>
+<p>获取浏览器窗口可见区域宽度和高度，不随内容改变。</p>
+<h3 id="比较获取浏览器窗口可见区域大小的方法">比较获取浏览器窗口可见区域大小的方法</h3>
+<ul>
+<li>在PC端浏览器上<code>document.documentElement.clientWidth/clientHeight</code>和<code>window.innerWidth/innerHeight</code>获取的浏览器窗口可见区域宽度和高度一样</li>
+<li>在WAP端中，大多浏览器上两个方法获取的宽高都一样，但是在ios上的UC和QQ浏览器上，因为地址栏可伸缩隐藏，导致两个方法获取的高度不一样。<code>document.documentElement.clientHeight</code>获取到的是地址栏隐藏时的窗口高度（与<code>html</code>和<code>body</code>高度设为100%时一致），而<code>window.innerHeight</code>获取到的是地址栏未隐藏时的窗口高度。</li>
+<li>建议使用<code>document.documentElement.clientWidth/clientHeight</code>获取浏览器窗口可见区域宽度和高度。</li>
+</ul>
+<h2 id="获取对象定位">获取对象定位</h2>
+<h3 id="offsetParent">offsetParent</h3>
+<p><code>offsetParent</code>属性返回一个对象的引用，这个对象是距离调用<code>offsetParent</code>的元素最近的（在包含层次中最靠近的），并且是已进行用过CSS定位的容器元素。如果这个容器元素未进行CSS定位, 则<code>offsetParent</code>属性的取值为根元素<code>body</code>的引用。</p>
+<ul>
+<li>当某个元素及其DOM结构层次中元素都未进行CSS定位时(<code>absolute</code>或者<code>relative</code>)，则这个元素的<code>offsetParent</code>属性的取值为根元素<code>body</code>。更确切地说，这个元素的各种偏移量计算（<code>offsetTop</code>、<code>offsetLeft</code>等）的参照物为根元素。</li>
+<li>当某个元素的父元素进行了CSS定位时（<code>absolute</code>或者<code>relative</code>），则这个元素的<code>offsetParent</code>属性的取值为其父元素。更确切地说，这个元素的各种偏移量计算（<code>offsetTop</code>、<code>offsetLeft</code>等）的参照物为其父元素。</li>
+<li>当某个元素CSS定位为<code>fixed</code>时，元素的<code>offsetParent</code>属性返回<code>null</code>.</li>
+<li>当容器元素的<code>style.display</code> 被设置为 <code>none</code>时（译注：IE和Opera除外），<code>offsetParent</code>属性返回<code>null</code>。</li>
+</ul>
+<h3 id="elem-offsetLeft/offsetTop">elem.offsetLeft/offsetTop</h3>
+<p>获取对象（从边框开始）相对于版面或由<code>offsetParent</code> 属性指定的父坐标（从边框开始）的计算左侧和上侧位置。</p>
+<h3 id="elem-scrollLeft/scrollTop">elem.scrollLeft/scrollTop</h3>
+<p>设置或获取位于对象左边界/上边界和窗口中目前可见内容的最左端/最上端之间的距离。</p>
+<ul>
+<li><code>document.documentElement.scrollTop</code>获取页面垂直方向滚动的值。</li>
+</ul>
+<h3 id="window-screenLeft/screenTop">window.screenLeft/screenTop</h3>
+<p>获取浏览器距离屏幕的左端和上端的距离。</p>
+<h3 id="event-clientX/Y">event.clientX/Y</h3>
+<p>获取相对浏览器可视区域的座标，不计算滚动到可视区域外的页面部分。</p>
+<h3 id="event-offsetX/Y">event.offsetX/Y</h3>
+<p>获取相对容器内部的坐标。</p>
+<h3 id="event-screenX/Y">event.screenX/Y</h3>
+<p>获取相对屏幕的坐标。</p>
+<h3 id="event-pageX/Y">event.pageX/Y</h3>
+<p>获取相对整个页面内部的坐标，包括滚动到可视区域外的页面部分。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/获取对象大小和定位/">获取对象大小和定位</a><a href="/tags/DOM/">DOM</a><a href="/tags/BOM/">BOM</a><a href="/tags/javascript/">javascript</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/11/23/obtain-element-size/" data-title="获取对象大小和定位 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/11/19/this-object/"  title="浅谈this对象">
+ <strong>NEXT:</strong><br/> 
+ <span>浅谈this对象
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#获取对象大小"><span class="toc-number">1.</span> <span class="toc-text">获取对象大小</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-offsetWidth/offsetHeight"><span class="toc-number">1.1.</span> <span class="toc-text">elem.offsetWidth/offsetHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-clientWidth/clientHeight"><span class="toc-number">1.2.</span> <span class="toc-text">elem.clientWidth/clientHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-scrollWidth/scrollHeight"><span class="toc-number">1.3.</span> <span class="toc-text">elem.scrollWidth/scrollHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screen-width/screen-height"><span class="toc-number">1.4.</span> <span class="toc-text">window.screen.width/screen.height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screen-availWidth/screen-availHeight"><span class="toc-number">1.5.</span> <span class="toc-text">window.screen.availWidth/screen.availHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-innerWidth/innerHeight"><span class="toc-number">1.6.</span> <span class="toc-text">window.innerWidth/innerHeight</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#比较获取浏览器窗口可见区域大小的方法"><span class="toc-number">1.7.</span> <span class="toc-text">比较获取浏览器窗口可见区域大小的方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#获取对象定位"><span class="toc-number">2.</span> <span class="toc-text">获取对象定位</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#offsetParent"><span class="toc-number">2.1.</span> <span class="toc-text">offsetParent</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-offsetLeft/offsetTop"><span class="toc-number">2.2.</span> <span class="toc-text">elem.offsetLeft/offsetTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#elem-scrollLeft/scrollTop"><span class="toc-number">2.3.</span> <span class="toc-text">elem.scrollLeft/scrollTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#window-screenLeft/screenTop"><span class="toc-number">2.4.</span> <span class="toc-text">window.screenLeft/screenTop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-clientX/Y"><span class="toc-number">2.5.</span> <span class="toc-text">event.clientX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-offsetX/Y"><span class="toc-number">2.6.</span> <span class="toc-text">event.offsetX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-screenX/Y"><span class="toc-number">2.7.</span> <span class="toc-text">event.screenX/Y</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#event-pageX/Y"><span class="toc-number">2.8.</span> <span class="toc-text">event.pageX/Y</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BOM/" title="BOM">BOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>1</sup></a></li>
+		
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+			<li><a href="/tags/获取对象大小和定位/" title="获取对象大小和定位">获取对象大小和定位<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
