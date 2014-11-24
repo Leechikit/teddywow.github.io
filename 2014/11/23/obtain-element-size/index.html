@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-23T08:12:15.000Z" itemprop="datePublished">11月 23 2014</time>
-    更新日期:<time datetime="2014-11-23T08:24:00.000Z" itemprop="dateModified">11月 23 2014</time>
+    更新日期:<time datetime="2014-11-24T13:18:52.000Z" itemprop="dateModified">11月 24 2014</time>
     
   </p>
 </header>
@@ -94,20 +94,37 @@
 <li><code>document.body.clientWidth/clientHeight</code><br>  获取<code>BODY</code>对象宽度和高度，随内容改变。</li>
 <li><code>document.documentElement.clientWidth/clientHeight</code><br>  获取浏览器窗口可见区域宽度和高度，不随内容改变。</li>
 </ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"container"</span> <span class="property">id</span>=<span class="string">"Jcontainer"</span>&gt;</div><div class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span> <span class="property">id</span>=<span class="string">"Jbox"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">200px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">100px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">20px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">overflow-x</span>:<span class="value">auto</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">10px</span> solid <span class="hexcolor">#333</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">position</span>:<span class="value">relative</span></span>;	</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">220px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#faad2c</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).offsetWidth;  <span class="comment">//260（宽度200+内边距20*2+边框10*2）</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).offsetHeight; <span class="comment">//160（高度100+内边距20*2+边框10*2）</span></div></pre></td></tr></table></figure>
+
+<p>如下图红框为所示区域<br><img src="/images/offset.png" alt=""></p>
 <h3 id="elem-clientWidth/clientHeight">elem.clientWidth/clientHeight</h3>
 <p>获取对象可见的宽度和高度，不包括滚动条、边框，包括内边距，会随元素的显示大小改变。</p>
 <ul>
 <li>当对象为内联元素时，<code>clientWidth</code>和<code>clientHeight</code>无法得到值，显示为0。</li>
 </ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).clientWidth;  <span class="comment">//223（宽度200+内边距20*2-滚动条17）</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).clientHeight; <span class="comment">//140（高度100+内边距20*2）</span></div></pre></td></tr></table></figure>
+
+<p>如下图红框为所示区域<br><img src="/images/client.png" alt=""></p>
 <h3 id="elem-scrollWidth/scrollHeight">elem.scrollWidth/scrollHeight</h3>
 <p>获取对象的实际内容的宽度和高度，不包括滚动条、边框，包括内边距，会随对象中内容的多少改变（内容多了可能会改变对象的实际宽度和高度）。</p>
 <ul>
 <li>当对象为内联元素时，<code>scrollWidth</code>和<code>scrollHeight</code>无法得到值，显示为0。</li>
 </ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).scrollWidth;  <span class="comment">//223（宽度200+内边距20*2-滚动条17）</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).scrollHeight; <span class="comment">//260（实际内容高度220+内边距20*2）</span></div></pre></td></tr></table></figure>
+
+<p>如下图红框为所示区域，红框为实际内容展开的大小。<br><img src="/images/scroll.png" alt=""></p>
 <h3 id="window-screen-width/screen-height">window.screen.width/screen.height</h3>
-<p>获取屏幕分辨率的宽度和高度，包括滚动条，固定不变，与浏览器无关。</p>
+<p>获取屏幕分辨率的宽度和高度，包括滚动条，固定不变，与浏览器大小无关。</p>
 <h3 id="window-screen-availWidth/screen-availHeight">window.screen.availWidth/screen.availHeight</h3>
-<p>获取屏幕可用工作区宽度和高度，包括滚动条，固定不变，与浏览器无关。</p>
+<p>获取屏幕可用工作区宽度和高度，包括滚动条，固定不变，与浏览器大小无关。</p>
 <h3 id="window-innerWidth/innerHeight">window.innerWidth/innerHeight</h3>
 <p>获取浏览器窗口可见区域宽度和高度，不随内容改变。</p>
 <h3 id="比较获取浏览器窗口可见区域大小的方法">比较获取浏览器窗口可见区域大小的方法</h3>
@@ -127,21 +144,30 @@
 </ul>
 <h3 id="elem-offsetLeft/offsetTop">elem.offsetLeft/offsetTop</h3>
 <p>获取对象（从边框开始）相对于版面或由<code>offsetParent</code> 属性指定的父坐标（从边框开始）的计算左侧和上侧位置。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jbox'</span>).offsetLeft;  <span class="comment">//20（左内边距20）</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jbox'</span>).offsetTop;   <span class="comment">//20（上内边距20）</span></div></pre></td></tr></table></figure>
+
+<p>如下图两个红箭头分别是<code>box</code>的<code>offsetLeft</code>和<code>offsetTop</code>所获得的距离，注意<code>container</code>已设为<code>position:relative</code>，不包括<code>container</code>和<code>box</code>的边框。<br><img src="/images/offsetTop.png" alt=""></p>
 <h3 id="elem-scrollLeft/scrollTop">elem.scrollLeft/scrollTop</h3>
 <p>设置或获取位于对象左边界/上边界和窗口中目前可见内容的最左端/最上端之间的距离。</p>
 <ul>
 <li><code>document.documentElement.scrollTop</code>获取页面垂直方向滚动的值。</li>
 </ul>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).scrollLeft;  <span class="comment">//0</span></div><div class="line"><span class="built_in">document</span>.getElementById(<span class="string">'Jcontainer'</span>).scrollTop;   <span class="comment">//60（滚动条向下滚动到中间）</span></div></pre></td></tr></table></figure>
+
+<p>如下图，滚动条向下滚动一半，两个红箭头分别是<code>container</code>的<code>scrollLeft</code>和<code>scrollLeft</code>所获得的距离，因为<code>container</code>没有向左滚动，所以<code>scrollLeft</code>为0，而<code>container</code>的滚动条向下滚动中间，所以<code>scrollTop</code>为<code>container</code>向上滚动的距离。<br><img src="/images/scrollTop.png" alt=""></p>
 <h3 id="window-screenLeft/screenTop">window.screenLeft/screenTop</h3>
 <p>获取浏览器距离屏幕的左端和上端的距离。</p>
 <h3 id="event-clientX/Y">event.clientX/Y</h3>
 <p>获取相对浏览器可视区域的座标，不计算滚动到可视区域外的页面部分。</p>
+<p>如下图两个红箭头分别是触发事件对象的<code>clientX</code>和<code>clientY</code>所获得的距离<br><img src="/images/clientY.png" alt=""></p>
 <h3 id="event-offsetX/Y">event.offsetX/Y</h3>
 <p>获取相对容器内部的坐标。</p>
+<p>如下图两个红箭头分别是触发事件对象的<code>offsetX</code>和<code>offsetY</code>所获得的距离<br><img src="/images/offsetY.png" alt=""></p>
 <h3 id="event-screenX/Y">event.screenX/Y</h3>
 <p>获取相对屏幕的坐标。</p>
 <h3 id="event-pageX/Y">event.pageX/Y</h3>
 <p>获取相对整个页面内部的坐标，包括滚动到可视区域外的页面部分。</p>
+<p>如下图两个红箭头分别是触发事件对象的<code>pageX</code>和<code>pageY</code>所获得的距离<br><img src="/images/pageY.png" alt=""></p>
   
 	</div>
 		<footer class="article-footer clearfix">
