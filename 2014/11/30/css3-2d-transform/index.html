@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2014-11-30T07:28:00.000Z" itemprop="datePublished">11月 30 2014</time>
-    更新日期:<time datetime="2014-11-30T14:48:26.000Z" itemprop="dateModified">11月 30 2014</time>
+    更新日期:<time datetime="2014-12-07T10:06:28.000Z" itemprop="dateModified">12月 7 2014</time>
     
   </p>
 </header>
@@ -107,6 +107,14 @@
 <li>ty是元素在Y轴（垂直方向）方向的位移量，当ty为正值时，元素向Y轴下方向移动；当ty为负值时，元素向Y轴上方向移动；当ty为零时，元素在Y轴方向不移动。</li>
 <li>当<code>translate()</code>只有一个参数时，这个参数代表X轴的位移量tx，Y轴的位移量为默认值零,<code>translate(tx)</code>相当于<code>translate(tx,0)</code>。</li>
 </ul>
+<p>现在我们来看一个用<code>translate(tx,ty)</code>的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;<span class="keyword">div</span>&gt;</div><div class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"one"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"two"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></td></tr></table></figure>
+
+
+
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="class">.one</span>,<span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">120px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">translate</span>(<span class="number">150px</span>,<span class="number">80px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p>效果如下图：<br><img src="/images/css3-2d-transform/translate.png" alt=""><br><code>div.two</code>沿X轴向右位移了150px，沿Y轴向下位移了80px。</p>
 <p>当我们需要元素在2D平面上只是沿着一个方向移动时，CSS3还提供了两个更简单的函数：</p>
 <ul>
 <li>translateX(tx)：在X轴方向水平移动元素，只有一个参数，与<code>translate(tx,0)</code>效果相同。</li>
@@ -119,6 +127,10 @@
 <ul>
 <li>r是元素选择的角度，单位为deg，当r为正值时，元素顺时针旋转；当r为负值时，元素逆时针旋转；当r为零时，元素不旋转。</li>
 </ul>
+<p>现在我们来看一个用<code>rotate(rdeg)</code>的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class">.one</span>,<span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">120px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotate</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"><span class="number">0.5</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p>效果如下图：<br><img src="/images/css3-2d-transform/rotate.png" alt=""><br><code>div.two</code>以元素中心顺时针旋转45度。</p>
 <h2 id="缩放scale()">缩放scale()</h2>
 <p><code>scale()</code>是CSS3的一种函数，用于将元素在2D平面里进行水平方向和垂直方向的缩小和放大。<code>scale()</code>函数接受一个十进制值。<br>sacle()的语法如下：</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">sacle</span>(sx);</div></pre></td></tr></table></figure>
@@ -132,6 +144,10 @@
 <li>当sx/sy为负值时，先把元素绕着X轴/Y轴翻转，然后再按sx/sy的绝对值进行缩放。</li>
 <li>当<code>sacle()</code>只有一个参数时，sx和sy都等于这个参数，在X轴和Y轴方向缩放同等的值。</li>
 </ul>
+<p>现在我们来看一个用<code>scale(sx,sy)</code>的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class">.one</span>,<span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">120px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">scale</span>(<span class="number">2</span>,<span class="number">2</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"><span class="number">0.5</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p>效果如下图：<br><img src="/images/css3-2d-transform/scale.png" alt=""><br><code>div.two</code>以元素中心沿X轴和Y轴放大2倍。</p>
 <p>当我们需要元素在2D平面上只是沿着一个方向缩放时，CSS3还提供了两个更简单的函数：</p>
 <ul>
 <li>scaleX(sx)：在X轴方向水平缩放元素，只有一个参数，与<code>scale(tx,0)</code>效果相同。</li>
@@ -149,6 +165,10 @@
 <li>ydeg是元素在Y轴（垂直方向）扭曲的角度，单位为deg，当y为正值时，元素在Y轴方向逆时针扭曲；当y为负值时，元素在Y轴方向顺时针扭曲，当y为零时，元素在Y轴方向不扭曲。</li>
 <li>当<code>skew()</code>只有一个参数时，这个参数代表在X轴扭曲的角度xdeg，Y轴扭曲的角度为零，<code>skew(xdeg)</code>相当于<code>skew(xdeg,0)</code>。</li>
 </ul>
+<p>现在我们来看一个用<code>skew(xdeg)</code>的例子</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class">.one</span>,<span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">120px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">100px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">skew</span>(<span class="number">30deg</span>)</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"><span class="number">0.5</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></td></tr></table></figure>
+
+<p>效果如下图：<br><img src="/images/css3-2d-transform/skew.png" alt=""><br><code>div.two</code>以元素中心沿着X轴逆时针扭曲30度。</p>
 <p>当我们需要元素在2D平面上只是沿着一个方向扭曲时，CSS3还提供了两个更简单的函数：</p>
 <ul>
 <li>skewX(sx)：在X轴方向水平扭曲元素，只有一个参数，与<code>skew(sx,0)</code>效果相同。</li>
