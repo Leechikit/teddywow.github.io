@@ -1,0 +1,365 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>css中的百分比 | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="介绍css中能设置百分比值的属性，以及各个属性百分比值的参照值。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2014/12/12/css-percentage/" title="css中的百分比" itemprop="url">css中的百分比</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2014-12-12T15:36:20.000Z" itemprop="datePublished">12月 12 2014</time>
+    更新日期:<time datetime="2014-12-12T15:36:34.000Z" itemprop="dateModified">12月 12 2014</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#能设置百分比的属性："><span class="toc-number">1.</span> <span class="toc-text">能设置百分比的属性：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以元素的包含块为参照"><span class="toc-number">2.</span> <span class="toc-text">以元素的包含块为参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#width_&_height"><span class="toc-number">2.1.</span> <span class="toc-text">width & height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top、left、right、bottom"><span class="toc-number">2.2.</span> <span class="toc-text">top、left、right、bottom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin_&_padding"><span class="toc-number">2.3.</span> <span class="toc-text">margin & padding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以元素自身为参照"><span class="toc-number">3.</span> <span class="toc-text">以元素自身为参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transform:translate"><span class="toc-number">3.1.</span> <span class="toc-text">transform:translate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform-origin"><span class="toc-number">3.2.</span> <span class="toc-text">transform-origin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他参照"><span class="toc-number">4.</span> <span class="toc-text">其他参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以元素自身font-size为参照：line-height"><span class="toc-number">4.1.</span> <span class="toc-text">以元素自身font-size为参照：line-height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以元素自身line-height为参照：vertical-align"><span class="toc-number">4.2.</span> <span class="toc-text">以元素自身line-height为参照：vertical-align</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以父元素font-size为参照：font-size"><span class="toc-number">4.3.</span> <span class="toc-text">以父元素font-size为参照：font-size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以减法计算值为参照：background-position"><span class="toc-number">4.4.</span> <span class="toc-text">以减法计算值为参照：background-position</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#百分比的继承"><span class="toc-number">5.</span> <span class="toc-text">百分比的继承</span></a></li></ol>
+		</div>
+		
+		<p>百分比值是一种相对值，任何时候要分析它的效果，都需要正确找到它的参照值。百分比值实际会在这个过程中，根据它的参照计算转化为一个绝对值，然后再被应用。</p>
+<h2 id="能设置百分比的属性：">能设置百分比的属性：</h2>
+<ul>
+<li>元素盒子模型：width、min-width、max-width、height、min-height、max-height、margin、padding</li>
+<li>元素布局定位：top、left、bottom、right</li>
+<li>元素字体行高：font-size、line-height、text-indent</li>
+<li>元素变换：transform:translate、transform-origin</li>
+<li>其他：vertical-align、background-position、border-radius</li>
+</ul>
+<h2 id="以元素的包含块为参照">以元素的包含块为参照</h2>
+<p>[不理解包含块的请戳]{<a href="http://www.w3help.org/zh-cn/kb/008/}" target="_blank" rel="external">http://www.w3help.org/zh-cn/kb/008/}</a></p>
+<h3 id="width_&amp;_height">width &amp; height</h3>
+<p><code>width</code>、<code>min-width</code>、<code>max-width</code>、<code>height</code>、<code>min-height</code>、<code>max-height</code>这些宽高元素在使用百分比值的时候，参照都是元素的包含块。其中<code>width</code>、<code>min-width</code>、<code>max-width</code>参照元素包含块的宽度，<code>height</code>、<code>min-height</code>、<code>max-height</code>参照元素包含块的高度。</p>
+<p>当高度值设置为百分比时，要注意该元素的包含块是否有明确的高度定义，当包含块没有明确的高度定义（即高度随内容增大），则该百分比值等同于默认值auto。</p>
+<p>根元素<code>&lt;html&gt;</code>的包含块是视口（viewport）提供的初始包含块，初始包含块默认有高度定义且等于视口高度，所以根元素<code>&lt;html&gt;</code>设置百分比高度总是有效。</p>
+<h3 id="top、left、right、bottom">top、left、right、bottom</h3>
+<p>定位用的<code>top</code>、<code>left</code>、<code>right</code>、<code>bottom</code>的参照是元素的包含块，其中<code>left</code>、<code>right</code>是参照包含块的宽度，<code>top</code>、<code>bottom</code>是参照包含块的高度。</p>
+<h3 id="margin_&amp;_padding">margin &amp; padding</h3>
+<p><code>margin</code>和<code>padding</code>四个方向上的百分比值的参照都是包含块的宽度。</p>
+<p>严格地说，<code>margin</code>和<code>padding</code>参照是包含块的宽度，是在样式属性writing-mode为默认值时的情况。不过这个属性极少被用到，所以在此不做考虑。</p>
+<h2 id="以元素自身为参照">以元素自身为参照</h2>
+<h3 id="transform:translate">transform:translate</h3>
+<p>位移变换<code>translate</code>的百分比值的参照是该元素的宽高，其中水平方向上的位置是参照该元素的宽度，垂直方向上的位置是参照该元素的高度。</p>
+<h3 id="transform-origin">transform-origin</h3>
+<p>变换原点<code>transform-origin</code>的百分比值的参照是该元素的宽高，其中水平方向上的位移是参照该元素的宽度，垂直方向上的位移是参照该元素的高度。</p>
+<h2 id="其他参照">其他参照</h2>
+<h3 id="以元素自身font-size为参照：line-height">以元素自身font-size为参照：line-height</h3>
+<p>行高<code>line-height</code>的百分比值的参照是该元素的<code>font-size</code>值，如该元素<code>font-size</code>值为<code>14px</code>，那么该元素的<code>line-height:150%</code>效果为<code>line-height：21px</code>。</p>
+<h3 id="以元素自身line-height为参照：vertical-align">以元素自身line-height为参照：vertical-align</h3>
+<p>垂直对齐方式<code>vertical-align</code>的百分比值的参照是改元素的<code>line-height</code>值。</p>
+<h3 id="以父元素font-size为参照：font-size">以父元素font-size为参照：font-size</h3>
+<p>字体大小<code>font-size</code>参照的是父元素的<code>font-size</code>值，父元素的<code>font-size</code>值可以是定义的，也可以是继承得到的。</p>
+<h3 id="以减法计算值为参照：background-position">以减法计算值为参照：background-position</h3>
+<p>背景图定位<code>background-position</code>的百分比值，取的参照是一个减法计算值，由放置背景图的区域尺寸，减去背景图的尺寸得到，可以为负值。</p>
+<h2 id="百分比的继承">百分比的继承</h2>
+<p>父元素的属性设置百分比值后，后代元素继承父元素的该属性时，继承的是计算后的值，而不是百分比。<br>如父元素<code>font-size:14px;line-height:150%;</code>，则后代元素的<code>line-height</code>值为<code>21px</code>，而不是<code>150%</code>。</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a><a href="/tags/百分比/">百分比</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2014/12/12/css-percentage/" data-title="css中的百分比 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2014/12/10/html5-deviceMotionEvent/"  title="HTML5设备运动事件DeviceMotionEvent">
+ <strong>NEXT:</strong><br/> 
+ <span>HTML5设备运动事件DeviceMotionEvent
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#能设置百分比的属性："><span class="toc-number">1.</span> <span class="toc-text">能设置百分比的属性：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以元素的包含块为参照"><span class="toc-number">2.</span> <span class="toc-text">以元素的包含块为参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#width_&_height"><span class="toc-number">2.1.</span> <span class="toc-text">width & height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#top、left、right、bottom"><span class="toc-number">2.2.</span> <span class="toc-text">top、left、right、bottom</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#margin_&_padding"><span class="toc-number">2.3.</span> <span class="toc-text">margin & padding</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#以元素自身为参照"><span class="toc-number">3.</span> <span class="toc-text">以元素自身为参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#transform:translate"><span class="toc-number">3.1.</span> <span class="toc-text">transform:translate</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#transform-origin"><span class="toc-number">3.2.</span> <span class="toc-text">transform-origin</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他参照"><span class="toc-number">4.</span> <span class="toc-text">其他参照</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#以元素自身font-size为参照：line-height"><span class="toc-number">4.1.</span> <span class="toc-text">以元素自身font-size为参照：line-height</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以元素自身line-height为参照：vertical-align"><span class="toc-number">4.2.</span> <span class="toc-text">以元素自身line-height为参照：vertical-align</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以父元素font-size为参照：font-size"><span class="toc-number">4.3.</span> <span class="toc-text">以父元素font-size为参照：font-size</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#以减法计算值为参照：background-position"><span class="toc-number">4.4.</span> <span class="toc-text">以减法计算值为参照：background-position</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#百分比的继承"><span class="toc-number">5.</span> <span class="toc-text">百分比的继承</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BOM/" title="BOM">BOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DeviceMotionEvent/" title="DeviceMotionEvent">DeviceMotionEvent<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Transform/" title="Transform">Transform<sup>2</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>4</sup></a></li>
+		
+			<li><a href="/tags/css3/" title="css3">css3<sup>2</sup></a></li>
+		
+			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+		
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>3</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transform-origin/" title="transform-origin">transform-origin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/摇一摇/" title="摇一摇">摇一摇<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+			<li><a href="/tags/百分比/" title="百分比">百分比<sup>1</sup></a></li>
+		
+			<li><a href="/tags/获取对象大小和定位/" title="获取对象大小和定位">获取对象大小和定位<sup>1</sup></a></li>
+		
+			<li><a href="/tags/设备运动事件/" title="设备运动事件">设备运动事件<sup>1</sup></a></li>
+		
+			<li><a href="/tags/重力感应/" title="重力感应">重力感应<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2014 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
