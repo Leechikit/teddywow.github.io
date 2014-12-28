@@ -89,12 +89,12 @@
 		<h2 id="javascript事件绑定方法">javascript事件绑定方法</h2>
 <h3 id="on+EventType">on+EventType</h3>
 <p>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elem.<span class="keyword">on</span>+EventType=<span class="function"><span class="keyword">function</span>;</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">elem.<span class="keyword">on</span>+EventType=<span class="function"><span class="keyword">function</span>;</span></div></pre></figure>
 
 
 
 <p>这种是最原始的事件绑定方法，绑定在一个元素上，当一个元素绑定多个同类型的事件时，后面绑定的事件会覆盖前一个绑定的事件。<br>我们来看一下以下示例：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">'testDiv'</span>);</div><div class="line">elem.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent1'</span>);</div><div class="line">}</div><div class="line">elem.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent2'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line"><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">'testDiv'</span>);</div><div class="line">elem.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent1'</span>);</div><div class="line">}</div><div class="line">elem.onclick=<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent2'</span>);</div><div class="line">}</div></pre></figure>
 
 <p>上述例子中，点击id为testDiv的元素时，弹出clickEvent2的对话框，而不弹出clickEvent1的对话框。<br>优点：</p>
 <ul>
@@ -106,7 +106,7 @@
 </ul>
 <h3 id="addEventListener()">addEventListener()</h3>
 <p>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="transposed_variable">elem.</span>addEventListener(EventType,<span class="function"><span class="keyword">function</span><span class="params">[,useCapture]</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line"><span class="transposed_variable">elem.</span>addEventListener(EventType,<span class="function"><span class="keyword">function</span><span class="params">[,useCapture]</span>);</span></div></pre></figure>
 
 
 
@@ -116,22 +116,22 @@
 <li>function：定义当事件发生时运行的方法。</li>
 <li>useCapture：定在捕捉过程还是冒泡过程执行事件，true为在捕捉过程，false为在冒泡过程，默认为false。<br>我们来看一下以下示例：</li>
 </ul>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">'testDiv'</span>);</div><div class="line">elem.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent1'</span>);</div><div class="line">},<span class="literal">false</span>);</div><div class="line">elem.addEventListener(<span class="string">'click'</span>,event2,<span class="literal">false</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">event2</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent2'</span>);</div><div class="line">}</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line"><span class="keyword">var</span> elem=<span class="built_in">document</span>.getElementById(<span class="string">'testDiv'</span>);</div><div class="line">elem.addEventListener(<span class="string">'click'</span>,<span class="function"><span class="keyword">function</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent1'</span>);</div><div class="line">},<span class="literal">false</span>);</div><div class="line">elem.addEventListener(<span class="string">'click'</span>,event2,<span class="literal">false</span>);</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">event2</span><span class="params">()</span></span>{</div><div class="line">	alert(<span class="string">'clickEvent2'</span>);</div><div class="line">}</div></pre></figure>
 
 <p>在上述示例中，我们先后为id为testDiv元素绑定了两个点击事件，当我们点击元素时，先后弹出clickEvent1和clickEvent2弹窗。</p>
 <h4 id="removeEventListener()">removeEventListener()</h4>
 <p>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="tag">elem</span><span class="class">.removeEventListener</span>(<span class="tag">EventType</span>,<span class="tag">functionName</span><span class="attr_selector">[,useCapture]</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line"><span class="tag">elem</span><span class="class">.removeEventListener</span>(<span class="tag">EventType</span>,<span class="tag">functionName</span><span class="attr_selector">[,useCapture]</span>);</div></pre></figure>
 
 
 
 <p>removeEventListener()方法只能注销通过addEventListener()绑定的事件。<br>注销事件时removeEventListener的三个参数必须要跟addEventListener的参数相同，否则会出错。这里则要求要注销的事件在用addEventListener绑定时function不能是匿名函数。<br>现在我们注销之前通过<code>addEventListener</code>绑定的事件：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elem.removeEventListener(<span class="string">'click'</span>,event2,<span class="literal">false</span>);</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">elem.removeEventListener(<span class="string">'click'</span>,event2,<span class="literal">false</span>);</div></pre></figure>
 
 <p>注销后再次点击id为testDiv元素，只弹出了clickEvent1弹窗。</p>
 <h3 id="attachEvent()">attachEvent()</h3>
 <p>微软的私有方法，为元素绑定事件。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elem.attachEvent(<span class="string">"on+EventType"</span>,<span class="function"><span class="keyword">function</span>)</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">elem.attachEvent(<span class="string">"on+EventType"</span>,<span class="function"><span class="keyword">function</span>)</span>;</div></pre></figure>
 
 
 
@@ -141,7 +141,7 @@
 </ul>
 <h4 id="detachEvent()">detachEvent()</h4>
 <p>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">elem.detachEvent(<span class="string">"on+EventType"</span>,<span class="function"><span class="keyword">function</span>)</span>;</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">elem.detachEvent(<span class="string">"on+EventType"</span>,<span class="function"><span class="keyword">function</span>)</span>;</div></pre></figure>
 
 
 
@@ -149,7 +149,7 @@
 <h2 id="jQuery事件绑定方法">jQuery事件绑定方法</h2>
 <h3 id="bind()">bind()</h3>
 <p>为每个匹配元素的特定事件绑定事件处理函数。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">selector</span>).bind(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(<span class="keyword">selector</span>).bind(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></figure>
 
 
 
@@ -171,7 +171,7 @@
 </ol>
 <h3 id="live()">live()</h3>
 <p>委托对象document，为每个匹配元素的特定事件绑定事件处理函数。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">selector</span>).live(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(<span class="keyword">selector</span>).live(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></figure>
 
 
 
@@ -196,7 +196,7 @@
 </ol>
 <h3 id="delegate()">delegate()</h3>
 <p>自定义委托对象，为每个匹配元素的特定事件绑定事件处理函数。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">selector</span>).<span class="keyword">delegate</span>([childSelector,]EventType,[data],<span class="function"><span class="keyword">function</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(<span class="keyword">selector</span>).<span class="keyword">delegate</span>([childSelector,]EventType,[data],<span class="function"><span class="keyword">function</span>);</span></div></pre></figure>
 
 
 
@@ -218,7 +218,7 @@
 </ol>
 <h3 id="on()">on()</h3>
 <p>自定义委托对象，为每个匹配元素的特定事件绑定事件处理函数。在jQuery 1.7中，.on()方法 提供绑定事件处理程序所需的所有功能。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector).on(EventType[<span class="link_label">,chilidSelector</span>][<span class="link_reference">,data</span>],function);</div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(selector).on(EventType[<span class="link_label">,chilidSelector</span>][<span class="link_reference">,data</span>],function);</div></pre></figure>
 
 
 
@@ -230,14 +230,14 @@
 </ul>
 <h4 id="off()">off()</h4>
 <p>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(<span class="keyword">selector</span>).off(EventType[,<span class="keyword">selector</span>],<span class="function"><span class="keyword">function</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(<span class="keyword">selector</span>).off(EventType[,<span class="keyword">selector</span>],<span class="function"><span class="keyword">function</span>);</span></div></pre></figure>
 
 
 
 
 <h3 id="one()">one()</h3>
 <p>自定义委托对象，为每个匹配元素的特定事件绑定事件处理函数。每个元素只能运行一次事件处理器函数。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector).<span class="constant">one</span>(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(selector).<span class="constant">one</span>(EventType[,data],<span class="function"><span class="keyword">function</span>);</span></div></pre></figure>
 
 
 
@@ -245,7 +245,7 @@
 <p>注意：从jQuery1.7开始，jQuery引入了全新的事件绑定机制，on()和off()两个函数统一处理事件绑定。因为在此之前有bind(), live(), delegate()等方法来处理事件绑定，jQuery从性能优化以及方式统一方面考虑决定推出新的函数来统一事件绑定方法并且替换掉以前的方法。</p>
 <h3 id="trigger()">trigger()</h3>
 <p>触发被选元素的指定事件类型。<br>语法：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$(selector).trigger(<span class="type">EventType</span>[,<span class="typedef"><span class="keyword">data</span>])；</span></div></pre></td></tr></table></figure>
+<figure class="highlight"><pre><div class="line">$(selector).trigger(<span class="type">EventType</span>[,<span class="typedef"><span class="keyword">data</span>])；</span></div></pre></figure>
 
 
 
