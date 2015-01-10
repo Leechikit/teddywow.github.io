@@ -1,0 +1,415 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>两端对齐布局 | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="介绍两种实现两端对齐布局的方法，解决文字两端对齐和元素多行两端对齐末行左对齐等常见布局问题。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/08/justified-layout/" title="两端对齐布局" itemprop="url">两端对齐布局</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-08T02:40:00.000Z" itemprop="datePublished">1月 8 2015</time>
+    更新日期:<time datetime="2015-01-10T06:03:02.000Z" itemprop="dateModified">1月 10 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用text-align:justify实现"><span class="toc-number">1.</span> <span class="toc-text">使用text-align:justify实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单行或多行元素两端对齐布局"><span class="toc-number">1.1.</span> <span class="toc-text">单行或多行元素两端对齐布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#元素首尾标签要留空或换行"><span class="toc-number">1.1.1.</span> <span class="toc-text">元素首尾标签要留空或换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内容必须超过一行"><span class="toc-number">1.1.2.</span> <span class="toc-text">内容必须超过一行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决inline-block引起高度撑起"><span class="toc-number">1.1.3.</span> <span class="toc-text">解决inline-block引起高度撑起</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文字两端对齐布局"><span class="toc-number">1.2.</span> <span class="toc-text">文字两端对齐布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行元素两端对齐布局并末行左对齐"><span class="toc-number">1.3.</span> <span class="toc-text">多行元素两端对齐布局并末行左对齐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用display:flex+justify-content:space-between实现"><span class="toc-number">2.</span> <span class="toc-text">使用display:flex+justify-content:space-between实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单行或多行元素两端对齐布局-1"><span class="toc-number">2.1.</span> <span class="toc-text">单行或多行元素两端对齐布局</span></a></li></ol></li></ol>
+		</div>
+		
+		<h2 id="使用text-align:justify实现">使用text-align:justify实现</h2>
+<p><code>text-align</code>是规定元素中的文本的水平对齐方式，它有个属性值<code>justify</code>能使得文本两端对齐显示。<br><code>text-align</code>主要是用来控制inline水平元素或inline-block元素的对齐与显示的，例如嵌套行内标签的文字、图片、input表单控件等；而对block水平的元素是没有作用的。</p>
+<h3 id="单行或多行元素两端对齐布局">单行或多行元素两端对齐布局</h3>
+<h4 id="元素首尾标签要留空或换行">元素首尾标签要留空或换行</h4>
+<p>当我们使用<code>text-align:justify</code>,把如下结构的元素两端对齐布局时，悲剧发生了，元素并没有两端对齐。</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">500px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> justify</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="tag">span</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic1.png" alt=""></p>
+<p>上面示例无法两端对齐的原因是元素必须要首尾标签留空或换行，当我们把结构改成以下两种时，元素两端对齐布局。</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+<p>或</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span> <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic2.png" alt=""></p>
+<p>上面示例中，第一行的末端都与右边界有空隙。这是因为，每一行最后的元素后面要有两个字符以上的留空或换行，否则会此行末端与右边界间会有空隙。<br>因此我们把结构格式化，若<code>&lt;/div&gt;</code>前没有空隙，在前面空一行或加个空格，如下所示：</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic3.png" alt=""></p>
+<h4 id="内容必须超过一行">内容必须超过一行</h4>
+<p>上面示例虽然可以两端对齐，但是最后一行没有两端对齐，这是因为元素两端对齐的前提是内容必须超过一行。<br>解决方案：在内容最后创建一个高度为0的宽度100%的透明的inline-block的标签层或伪元素。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="pseudo">::after</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">content</span>:<span class="value"><span class="string">""</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>; </div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>; </div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">	<span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic4.png" alt=""></p>
+<h4 id="解决inline-block引起高度撑起">解决inline-block引起高度撑起</h4>
+<p>在上面示例中会发现<code>container</code>底部高度被撑开了，这是由于<code>inline-block</code>的默认高度引起的，为何即使我们设置了<code>inline-block</code>的高度为0，但还是无法取消<code>inline-block</code>的默认最小高度呢？<br>其实能否能设<code>inline-block</code>元素高度为0与文档类型<code>DOCTYPE</code>声明有关：</p>
+<ul>
+<li>当DOCTYPE声明<code>HTML 4.01 Strict</code>,<code>XHTML 1.0 Strict</code>和<code>HTML5</code>时，不能设<code>inline-block</code>元素高度为0。</li>
+<li>当DOCTYPE声明<code>HTML 4.01 Transitional</code>和<code>XHTML 1.0 Transitional</code>时，可以设<code>inline-block</code>元素高度为0。</li>
+</ul>
+<p>因此当我们设置DOCTYPE声明为<code>HTML 4.01 Strict</code>,<code>XHTML 1.0 Strict</code>或<code>HTML5</code>时，可以通过设置负外边距隐藏掉撑起的高度，如下所示：</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"box"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">        <span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">    <span class="tag">&lt;/<span class="title">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">500px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value"> hidden</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> justify</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin-bottom</span>:<span class="value"> -<span class="number">18px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span><span class="pseudo">::after</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"><span class="string">""</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>; </div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="tag">span</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">vertical-align</span>:<span class="value"> top</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic5.png" alt=""></p>
+<h3 id="文字两端对齐布局">文字两端对齐布局</h3>
+<p>当我们在制作表单时，很多时候需要在输入框前增加相关标记<code>label</code>，标记中的内容文本长度不一而且需要对齐，此时我们需要把文字两端对齐布局。</p>
+<p>文本中的文字需要用空格隔开，效果如下：</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>一 百 块 你 都 不 给 我<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>我 和 你 什 么 仇<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">p</span>&gt;</span>什 么 怨<span class="tag">&lt;/<span class="title">p</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">250px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span> <span class="tag">p</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">20px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">30px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">30px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#ccc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> justify</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">10px</span> <span class="number">0</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span> <span class="tag">p</span><span class="pseudo">::after</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"><span class="string">""</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>; </div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic6.png" alt=""></p>
+<h3 id="多行元素两端对齐布局并末行左对齐">多行元素两端对齐布局并末行左对齐</h3>
+<p>上面的示例中，多行元素的末行也是两端对齐布局的，但很多时候我们希望布局更加整齐，此时我们需要末行按照上一行列距左对齐。<br>原理和上面两端对齐一致，复制几个空标签，宽度与对齐元素相等，但高度为0，里面就是个&nbsp;(不可缺)，复制的个数一般就是每行元素的列表个数啦，这样就可以保证最后一行元素一定是左对齐排列。</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"list left_fix"</span>&gt;</span>&nbsp;<span class="tag">&lt;/<span class="title">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"list left_fix"</span>&gt;</span>&nbsp;<span class="tag">&lt;/<span class="title">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"list left_fix"</span>&gt;</span>&nbsp;<span class="tag">&lt;/<span class="title">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"list left_fix"</span>&gt;</span>&nbsp;<span class="tag">&lt;/<span class="title">i</span>&gt;</span></div><div class="line">    <span class="tag">&lt;<span class="title">i</span> <span class="attribute">class</span>=<span class="value">"list left_fix"</span>&gt;</span>&nbsp;<span class="tag">&lt;/<span class="title">i</span>&gt;</span></div><div class="line"></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">500px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> justify</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span><span class="pseudo">::after</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">content</span>:<span class="value"><span class="string">""</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value">inline-block</span></span>; </div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="tag">span</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.left_fix</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">80px</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"><span class="number">0</span></span></span>; </div><div class="line">    <span class="rule"><span class="attribute">overflow</span>:<span class="value">hidden</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">display</span>:<span class="value"> inline-block</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic7.png" alt=""></p>
+<h2 id="使用display:flex+justify-content:space-between实现">使用display:flex+justify-content:space-between实现</h2>
+<h3 id="单行或多行元素两端对齐布局-1">单行或多行元素两端对齐布局</h3>
+<p>上面使用<code>text-align:justify</code>实现元素两端对齐布局的方法中，对结构有一定要求，还有可能要处理高度撑开的问题。在支持<code>flex-wrap</code>和<code>flex-flow</code>的浏览器上，我们还可以使用<code>display:flex+justify-content:space-between</code>实现，而已无需考虑结构和处理高度撑开。示例如下：</p>
+<figure class="highlight"><pre><div class="line"><span class="tag">&lt;<span class="title">div</span> <span class="attribute">class</span>=<span class="value">"container"</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line">	<span class="tag">&lt;<span class="title">span</span>&gt;</span><span class="tag">&lt;/<span class="title">span</span>&gt;</span></div><div class="line"><span class="tag">&lt;/<span class="title">div</span>&gt;</span></div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">500px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">0</span> auto</span></span>;	</div><div class="line">  	<span class="rule"><span class="attribute">display</span>:<span class="value"> flex</span></span>;	</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value">space-between</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="tag">span</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"><span class="number">2px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/justified-layout/pic8.png" alt=""></p>
+<p>支持<code>flex-wrap</code>和<code>flex-flow</code>的浏览器：</p>
+<ul>
+<li>PC端：Firefox21+，Chrome21+，Safari6.1+，Opera12.1+，IE10+</li>
+<li>Wap端：iOS7.1+，Android4.4+，IE Mobile10+</li>
+</ul>
+<p>参考</p>
+<ul>
+<li><a href="http://www.zhangxinxu.com/wordpress/2011/03/displayinline-blocktext-alignjustify下列表的两端对齐布局/" target="_blank" rel="external">http://www.zhangxinxu.com/wordpress/2011/03/displayinline-blocktext-alignjustify下列表的两端对齐布局/</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css/">css</a><a href="/tags/css3/">css3</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/08/justified-layout/" data-title="两端对齐布局 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/01/07/css3-animation/"  title="CSS3 animation">
+ <strong>NEXT:</strong><br/> 
+ <span>CSS3 animation
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用text-align:justify实现"><span class="toc-number">1.</span> <span class="toc-text">使用text-align:justify实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单行或多行元素两端对齐布局"><span class="toc-number">1.1.</span> <span class="toc-text">单行或多行元素两端对齐布局</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#元素首尾标签要留空或换行"><span class="toc-number">1.1.1.</span> <span class="toc-text">元素首尾标签要留空或换行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#内容必须超过一行"><span class="toc-number">1.1.2.</span> <span class="toc-text">内容必须超过一行</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#解决inline-block引起高度撑起"><span class="toc-number">1.1.3.</span> <span class="toc-text">解决inline-block引起高度撑起</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#文字两端对齐布局"><span class="toc-number">1.2.</span> <span class="toc-text">文字两端对齐布局</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多行元素两端对齐布局并末行左对齐"><span class="toc-number">1.3.</span> <span class="toc-text">多行元素两端对齐布局并末行左对齐</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用display:flex+justify-content:space-between实现"><span class="toc-number">2.</span> <span class="toc-text">使用display:flex+justify-content:space-between实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#单行或多行元素两端对齐布局-1"><span class="toc-number">2.1.</span> <span class="toc-text">单行或多行元素两端对齐布局</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BOM/" title="BOM">BOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DeviceMotionEvent/" title="DeviceMotionEvent">DeviceMotionEvent<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Transform/" title="Transform">Transform<sup>2</sup></a></li>
+		
+			<li><a href="/tags/animation/" title="animation">animation<sup>1</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>7</sup></a></li>
+		
+			<li><a href="/tags/css3/" title="css3">css3<sup>5</sup></a></li>
+		
+			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+		
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>4</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transform-origin/" title="transform-origin">transform-origin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transition/" title="transition">transition<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件注销/" title="事件注销">事件注销<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件绑定/" title="事件绑定">事件绑定<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/摇一摇/" title="摇一摇">摇一摇<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+			<li><a href="/tags/百分比/" title="百分比">百分比<sup>1</sup></a></li>
+		
+			<li><a href="/tags/获取对象大小和定位/" title="获取对象大小和定位">获取对象大小和定位<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
