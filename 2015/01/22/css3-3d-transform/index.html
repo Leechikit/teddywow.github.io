@@ -1,0 +1,519 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CSS3 3D Transform | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="介绍CSS3的transform属性在3D平面上对元素的变换。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/01/22/css3-3d-transform/" title="CSS3 3D Transform" itemprop="url">CSS3 3D Transform</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-01-22T09:30:20.000Z" itemprop="datePublished">1月 22 2015</time>
+    更新日期:<time datetime="2015-01-22T15:27:30.000Z" itemprop="dateModified">1月 22 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3D位移translate3d()"><span class="toc-number">1.</span> <span class="toc-text">3D位移translate3d()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#translateZ()与perspective属性的关系"><span class="toc-number">1.1.</span> <span class="toc-text">translateZ()与perspective属性的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D旋转rotate3d()"><span class="toc-number">2.</span> <span class="toc-text">3D旋转rotate3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D缩放scale3d()"><span class="toc-number">3.</span> <span class="toc-text">3D缩放scale3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D矩形matrix3d()"><span class="toc-number">4.</span> <span class="toc-text">3D矩形matrix3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perspective属性"><span class="toc-number">5.</span> <span class="toc-text">perspective属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#perspective取值"><span class="toc-number">5.1.</span> <span class="toc-text">perspective取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#perspective定义位置"><span class="toc-number">5.2.</span> <span class="toc-text">perspective定义位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perspective-origin属性"><span class="toc-number">6.</span> <span class="toc-text">perspective-origin属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform-style属性"><span class="toc-number">7.</span> <span class="toc-text">transform-style属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#backface-visibility属性"><span class="toc-number">8.</span> <span class="toc-text">backface-visibility属性</span></a></li></ol>
+		</div>
+		
+		<p>在上一篇中介绍了用CSS3使元素在2D平面上变换<a href="http://teddywow.github.io/2014/11/30/css3-2d-transform/" target="_blank" rel="external">《CSS3 2D Transform》</a>，而CSS3 3D变换时在CSS3 2D变换的基础上增加了一维前后Z轴。</p>
+<p>CSS3的3D<code>transform</code>函数包括：</p>
+<ul>
+<li>3D位移函数：translate3d()、translateZ()</li>
+<li>3D旋转函数：rotate3d()、rotateX()、rotateY()、rotateZ()</li>
+<li>3D缩放函数：scale3d()、scaleZ()</li>
+<li>3D矩形函数：matrix3d()</li>
+</ul>
+<h2 id="3D位移translate3d()">3D位移translate3d()</h2>
+<p><code>translate3d()</code>是CSS3的一种函数，用于将元素在3D空间里进行水平、垂直和前后位移。<code>translate3d()</code>函数接受CSS的标准度量单位。</p>
+<p><code>translate3d()</code>的语法如下：</p>
+<figure class="highlight"><pre><div class="line"><span class="function">translate3d</span>(tx,ty,tz);</div></pre></figure>
+
+<ul>
+<li>tx是元素在X轴（水平方向）方向的位移量，当tx为正值时，元素向X轴右方向移动；当tx为负值时，元素向X轴左方向移动；当tx为零时，元素在X轴方向不移动。</li>
+<li>ty是元素在Y轴（垂直方向）方向的位移量，当ty为正值时，元素向Y轴下方向移动；当ty为负值时，元素向Y轴上方向移动；当ty为零时，元素在Y轴方向不移动。</li>
+<li>tz是元素在Z轴（前后方向）方向的位移量，当tz为正值时，元素向Z轴正方向移动；当tz为负值时，元素向Z轴反方向移动；当tz为零时，元素在Z轴方向不移动。当tz值越大时，元素也离观看者越近，从视觉上元素就变得越大；反之其值越小时，元素也离观看者越远，从视觉上元素就变得越小。</li>
+<li>tz取值不能是百分比值，若取值为百分比值则无效。</li>
+</ul>
+<p>现在我们来看一个用<code>translate3d(tx,ty,tz)</code>的例子：</p>
+<figure class="highlight"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"one"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"two"</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">300px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">180px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-perspective</span>:<span class="value"> <span class="number">400</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.one</span>,<span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">120px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"><span class="number">1px</span> solid <span class="hexcolor">#000</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">right</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">bottom</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value">auto</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.one</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0.7</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">1</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">2</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">translate3d</span>(<span class="number">50px</span>,<span class="number">35px</span>,<span class="number">100px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/css3-3d-transform/translate3d1.png" alt=""></p>
+<p>上例中在3d变形元素的父元素中加上了<code>perspective</code>属性，这个属性是必不可少的，在下面会讲到。<code>div.two</code>元素沿X轴向右平移50px，沿Y轴向下位移了35px，沿Z轴向前位移了100px，视觉上感觉<code>div.two</code>变大更靠近了。</p>
+<p>下面我们改变一下样式，看看tz小于零的例子：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.one</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"> <span class="number">0.7</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">2</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">z-index</span>:<span class="value"> <span class="number">1</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">translate3d</span>(<span class="number">50px</span>,<span class="number">35px</span>,-<span class="number">100px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/css3-3d-transform/translate3d2.png" alt=""></p>
+<p>当我们需要元素在3D空间上只是沿着Z轴方向移动时，CSS3还提供了一个更简单的函数：</p>
+<ul>
+<li><code>translateZ(tz)</code>：在Z轴方向前后移动元素，只有一个参数，与translate3d(0,0,tz)效果相同。</li>
+</ul>
+<h3 id="translateZ()与perspective属性的关系">translateZ()与perspective属性的关系</h3>
+<p>下面我们会详细讲解<code>perspective</code>属性，但Z轴上的3D位移与这属性有密切关系，因此先提上来说明一下。</p>
+<ul>
+<li><code>perspective</code>是用于定义用户和元素3D空间Z平面之间的视距。</li>
+<li><code>translateZ(tz)</code>或<code>translate3d(0,0,tz)</code>是使元素在Z轴上位移。<br>当tz值在小于视距的范围内变化时，元素在用户眼前，用户可以看到元素前后移动变化，但当tz值大于视距范围时，此时元素相当于在用户的眼后，用户看不到元素，元素相当于消失不见了。<br>所以在设置元素在Z轴的位移量时，要注意小于视距<code>perspective</code>的值。</li>
+</ul>
+<h2 id="3D旋转rotate3d()">3D旋转rotate3d()</h2>
+<p><code>rotate3d()</code>是CSS3的一种函数，用于将元素在3D空间里沿着X轴、Y轴、Z轴进行顺时针或逆时针旋转。<code>rotate3d()</code>函数接受三个方向旋转程度的值和一个一个径向的度量单位值deg。<br><code>rotate3d()</code>的语法如下：</p>
+<figure class="highlight"><pre><div class="line"><span class="function">rotate3d</span>(x,y,z,rdeg);</div></pre></figure>
+
+<ul>
+<li>x是一个0到1之间的数值，元素围绕X轴旋转程度的矢量值。</li>
+<li>y是一个0到1之间的数值，元素围绕Y轴旋转程度的矢量值。</li>
+<li>z是一个0到1之间的数值，元素围绕Z轴旋转程度的矢量值。</li>
+<li>r是元素选择的角度，单位为deg，当r为正值时，元素顺时针旋转；当r为负值时，元素逆时针旋转；当r为零时，元素不旋转。</li>
+</ul>
+<p>当我们需要元素在3D空间上只是沿着一个方向旋转时，CSS3还提供了三个更简单的函数：</p>
+<ul>
+<li>rotateX(rdeg)：元素围绕X轴旋转，只有一个参数，与rotate3d(1,0,0,rdeg)效果相同。</li>
+<li>rotateY(rdeg)：元素围绕Y轴旋转，只有一个参数，与rotate3d(0,1,0,rdeg)效果相同。</li>
+<li>rotateZ(rdeg)：元素围绕Z轴旋转，只有一个参数，与rotate3d(0,0,1,rdeg)效果相同。</li>
+</ul>
+<p>我们看如下实例：<br>元素围绕X轴顺时针旋转45度：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotate3d</span>(<span class="number">1</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule">//<span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotateY</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/css3-3d-transform/rotateX.png" alt=""></p>
+<p>元素围绕Y轴顺时针旋转45度：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotate3d</span>(<span class="number">0</span>,<span class="number">1</span>,<span class="number">0</span>,<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule">//<span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotateY</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/css3-3d-transform/rotateY.png" alt=""></p>
+<p>元素围绕Z轴顺时针旋转45度：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotate3d</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>,<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule">//<span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">rotateZ</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><img src="/images/css3-3d-transform/rotateZ.png" alt=""></p>
+<h2 id="3D缩放scale3d()">3D缩放scale3d()</h2>
+<p><code>scale3d()</code>是CSS3的一种函数，用于将元素在3D空间里进行水平、垂直和前后3个方向的缩小和放大。<code>scale3d()</code>函数接受三个十进制值。<br><code>sacle3d()</code>的语法如下：</p>
+<figure class="highlight"><pre><div class="line">scale3d(sx,<span class="keyword">sy</span>,sz);</div></pre></figure>
+
+<ul>
+<li>sx是元素在X轴（水平方向）缩放的值，当sx为大于1的值时，元素在X轴方向放大；当sx为0~1的值时，元素在X轴方向缩小；当sx为1时，在X轴方向没有缩放。</li>
+<li>sy是元素在Y轴（水平方向）缩放的值，当sy为大于1的值时，元素在Y轴方向放大；当sy为0~1的值时，元素在Y轴方向缩小；当sy为1时，在Y轴方向没有缩放。</li>
+<li>sz是元素在Z轴（前后方向）缩放的值，当sz为大于1的值时，元素在Z轴方向放大；当sz为0~1的值时，元素在Z轴方向缩小；当sz为1时，在Z轴方向没有缩放。</li>
+<li>当sx/sy/sz为负值时，先把元素绕着X轴/Y轴/Z轴翻转，然后再按sx/sy/sz的绝对值进行缩放。</li>
+</ul>
+<p>当我们需要元素在3D空间上只是沿着Z轴方向缩放时，CSS3还提供了一个更简单的函数：</p>
+<ul>
+<li><code>scaleZ(sz)</code>：在Z轴方向前后缩放元素，只有一个参数，与scale3d(1,1,sz)效果相同。</li>
+</ul>
+<p>当我们单独使用<code>scale3d()</code>或<code>scaleZ()</code>时，在Z轴上看不到任何效果，需要和其他3D变换函数一起使用才能看到效果，现在我们在上面元素围绕X轴顺时针旋转45deg的例子上增加<code>scale3d()</code>来看看效果：</p>
+<p>元素沿Z轴缩小到原来的1半，再沿X轴旋转45度：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">scale3d</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">0.5</span>) <span class="function">rotateX</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule">//<span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">scaleZ</span>(<span class="number">0.5</span>) <span class="function">rotateX</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>可以看到元素在Z轴方向缩小了，旋转的立体感弱了。<br><img src="/images/css3-3d-transform/scaleZ1.png" alt=""></p>
+<p>元素沿Z轴放大到原来的3倍，再沿X轴旋转45度：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.two</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">scale3d</span>(<span class="number">1</span>,<span class="number">1</span>,<span class="number">3</span>) <span class="function">rotateX</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line">    <span class="rule">//<span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">scaleZ</span>(<span class="number">3</span>) <span class="function">rotateX</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>可以看到元素在Z轴方向放大了，旋转的立体增强了。<br><img src="/images/css3-3d-transform/scaleZ2.png" alt=""></p>
+<h2 id="3D矩形matrix3d()">3D矩形matrix3d()</h2>
+<p><code>matrix3d()</code>是CSS3的一种函数，它包含<code>translate3d()</code>、<code>rotate3d()</code>和<code>scale3d()</code>的变换效果，以上三种种函数均可用<code>matrix3d()</code>函数来代替实现相同效果。</p>
+<p>相比2D矩形的二维，3D矩形是三维，因此参数从<code>3*3=9</code>变成了<code>4*4=16</code>,即使参数变多了，但本质上和2D矩阵一致。由于3D矩阵较少运用，3D矩阵实现的效果均可通过其他3D变换函数替换，因此这里不详细介绍了。</p>
+<h2 id="perspective属性">perspective属性</h2>
+<p><code>perspective</code>是用来定义用户和元素3D空间Z平面之间的视距，这个视距影响了3D变形元素的立体性和变换效果。</p>
+<ul>
+<li>当<code>perspective</code>视距越大时，相当于我们离元素越远，元素的3D变换效果就越不明显。</li>
+<li>当<code>perspective</code>视距越小时，相当于我们离元素越近，元素的3D变换效果就越明显。</li>
+</ul>
+<h3 id="perspective取值">perspective取值</h3>
+<ul>
+<li>perspective取值为none或不设置或0，就相当于人贴着元素看，没有3D变换效果。</li>
+<li>perspective取值越小，相当于我们离元素越近，元素的3D变换效果就越明显。</li>
+<li>perspective的值无穷大，或值为0时与取值为none效果一样。</li>
+</ul>
+<h3 id="perspective定义位置">perspective定义位置</h3>
+<p><code>perspective</code>可以定义在3D变换元素的共同父元素（称为3D变换舞台）上和3D变换元素上。<br>当设置在3D变换舞台上时，视距作用整个舞台，舞台内的3D变换元素都有3D效果，语法为：</p>
+<figure class="highlight"><pre><div class="line"><span class="attribute">perspective</span>: <span class="string">none | length;</span></div></pre></figure>
+
+<p>当设置在3D变换元素的<code>perspective</code>视距只作用在该元素上，语法为：</p>
+<figure class="highlight"><pre><div class="line"><span class="attribute">transform</span><span class="value">: <span class="function">perspective</span>(length);</span></div></pre></figure>
+
+<p>当定义了<code>perspective</code>的3D变换舞台里只有一个3D变换元素时，其效果和<code>perspective</code>定义在3D变换元素一样。<br>但是当3D变换舞台内不止一个3D变换元素时，效果就不一样了，具体效果看以下例子：</p>
+<figure class="highlight"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span>&gt;&lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></figure>
+
+<p>在3D变换舞台定义<code>perspective</code>视距：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">400px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-perspective</span>:<span class="value"><span class="number">200</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span>&gt;<span class="tag">div</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"> <span class="function">rotateY</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>3D变换舞台里的子元素虽然都是围绕Y轴旋转45度，但是效果却不一样，这是因为3D变换舞台的源点位置<code>perspective-origin</code>（下面介绍）是正中间，所以两边的子元素看起来的效果不一样。<br><img src="/images/css3-3d-transform/perspective1.png" alt=""></p>
+<p>在3D变换元素定义<code>perspective</code>视距：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">400px</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">80px</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.container</span>&gt;<span class="tag">div</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">float</span>:<span class="value">left</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">60px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">-webkit-transform</span>:<span class="value"><span class="function">perspective</span>(<span class="number">200</span>) <span class="function">rotateY</span>(<span class="number">45deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>3D变换元素都是围绕Y轴旋转45度，效果一样，这是因为每一个元素都设了<code>perspective</code>属性，相当于每一个元素都是一个3D变换舞台，都有自己的源点位置<code>perspective-origin</code>（下面介绍），因为默认源点位置都是正中间，所以效果都一样。<br><img src="/images/css3-3d-transform/perspective2.png" alt=""></p>
+<h2 id="perspective-origin属性">perspective-origin属性</h2>
+<p>上面讲到的<code>perspective</code>属性是用来决定人与元素的距离，而<code>perspective-origin</code>属性是决定人观看元素的源点位置，<code>perspective-origin</code>属性要定义在有定义<code>perspective</code>属性的元素上，才有效果。</p>
+<p>语法：</p>
+<figure class="highlight"><pre><div class="line"><span class="attribute">perspective-origin</span>: <span class="string">x-axis y-axis;</span></div></pre></figure>
+
+<ul>
+<li><p>x-axis：定义源点在X轴上的位置，默认值是50%，取值有：</p>
+<ul>
+<li>left</li>
+<li>center</li>
+<li>right</li>
+<li>length：长度如50px</li>
+<li>percentage：百分比如50%</li>
+</ul>
+</li>
+<li><p>y-axis：定义源点在Y轴上的位置，默认值是50%，取值有：</p>
+<ul>
+<li>top</li>
+<li>center</li>
+<li>bottom</li>
+<li>length：长度如50px</li>
+<li>percentage：百分比如50%</li>
+</ul>
+</li>
+</ul>
+<p>我们来看看以下示例，更好的理解<code>perspective-origin</code>：</p>
+<iframe width="100%" height="520" src="http://jsfiddle.net/9eaeangj/1/embedded/result,html,css" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+
+<h2 id="transform-style属性">transform-style属性</h2>
+<p><code>transform-style</code>属性是3D空间一个重要属性，当父元素进行3D变换时，这个属性就能指定子元素如何在3D空间中呈现。他主要有两个属性值：</p>
+<ul>
+<li>flat：默认值，表示所有子元素在2D平面呈现。</li>
+<li>preserve-3d：表示所有子元素在3D空间中呈现。</li>
+</ul>
+<p>我们来模拟上一个例子的立体立方体：</p>
+<figure class="highlight"><pre><div class="line">&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"container"</span>&gt;</div><div class="line">    &lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"box"</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"front"</span>&gt;<span class="number">1</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"back"</span>&gt;<span class="number">2</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"right"</span>&gt;<span class="number">3</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"left"</span>&gt;<span class="number">4</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"top"</span>&gt;<span class="number">5</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    	&lt;<span class="keyword">div</span> <span class="type">class</span>=<span class="string">"bottom"</span>&gt;<span class="number">6</span>&lt;/<span class="keyword">div</span>&gt;</div><div class="line">    &lt;/<span class="keyword">div</span>&gt;</div><div class="line">&lt;/<span class="keyword">div</span>&gt;</div></pre></figure>
+
+
+
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">    <span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">400px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">200px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">padding</span>:<span class="value"> <span class="number">10px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#333</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line"> 	<span class="rule"><span class="attribute">-webkit-perspective</span>:<span class="value"><span class="number">500</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100%</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateX</span>(-<span class="number">25deg</span>) <span class="function">rotateY</span>(-<span class="number">25deg</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.box</span>&gt;<span class="tag">div</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">98px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">height</span>:<span class="value"> <span class="number">98px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">background-color</span>:<span class="value"> <span class="hexcolor">#009fcc</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">border</span>:<span class="value"> <span class="number">1px</span> solid <span class="hexcolor">#000</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">opacity</span>:<span class="value"><span class="number">0.8</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">text-align</span>:<span class="value"> center</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">line-height</span>:<span class="value"> <span class="number">98px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">font-size</span>:<span class="value"> <span class="number">50px</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">color</span>:<span class="value"><span class="hexcolor">#fff</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">position</span>:<span class="value"> absolute</span></span>;</div><div class="line">    <span class="rule"><span class="attribute">top</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">bottom</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">left</span>:<span class="value"><span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">right</span>:<span class="value"> <span class="number">0</span></span></span>;</div><div class="line">    <span class="rule"><span class="attribute">margin</span>:<span class="value">auto</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.front</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.back</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateX</span>(<span class="number">180deg</span>) <span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.left</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateY</span>(-<span class="number">90deg</span>) <span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.right</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateY</span>(<span class="number">90deg</span>) <span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.top</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateX</span>(<span class="number">90deg</span>) <span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.bottom</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateX</span>(-<span class="number">90deg</span>) <span class="function">translateZ</span>(<span class="number">50px</span>)</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>把六个面通过3D旋转和3D位移组合成一个立方体，然后把立方体3D旋转一下，方便观察3D效果，效果如下：<br><img src="/images/css3-3d-transform/transformstyle1.png" alt=""><br>想象是美好的，但是现实是残酷的，立方体被压扁成一个平面了，那是因为父元素<code>div.box</code>的<code>transform-style</code>默认值为<code>flat</code>，把子元素都显示在2D平面了，现在我们把父元素<code>div.box</code>的<code>transform-style</code>设成<code>preserve-3d</code>，效果如下：</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.box</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">width</span>:<span class="value"><span class="number">100%</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">height</span>:<span class="value"><span class="number">100%</span></span></span>;</div><div class="line">	<span class="rule"><span class="attribute">position</span>:<span class="value"> relative</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">transform</span>:<span class="value"><span class="function">rotateX</span>(-<span class="number">25deg</span>) <span class="function">rotateY</span>(-<span class="number">25deg</span>)</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">transform-style</span>:<span class="value"> preserve-<span class="number">3</span>d</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p>立方体终于在3D空间立体显示了。<br><img src="/images/css3-3d-transform/transformstyle2.png" alt=""></p>
+<p>注意：如果你的元素设置了<code>transform-style</code>值为<code>preserve-3d</code>，就不能为了防止子元素溢出容器而设置<code>overflow</code>值为<code>hidden</code>，如果设置了<code>overflow:hidden</code>同样可以迫死子元素出现在同一平面（和元素设置了<code>transform-style</code>为<code>flat</code>一样的效果）。</p>
+<h2 id="backface-visibility属性">backface-visibility属性</h2>
+<p><code>backface-visibility</code>属性是用于隐藏被旋转的元素的背面，一般在使用3D旋转时会用到。他有两个属性：</p>
+<ul>
+<li>visible：元素背面是可见的。</li>
+<li>hidden：元素背面是不可见的。</li>
+</ul>
+<p>在上面的立方体中，六个面的背面都是可见的，现在我们把六个面的<code>backface-visibility</code>属性值设为<code>hidden</code>，现在六个面的背面都是不可见，效果如下：<br><img src="/images/css3-3d-transform/backfacevisibility.png" alt=""></p>
+<p>参考：</p>
+<ul>
+<li><a href="http://www.w3cplus.com/css3/transform-basic-property.html" target="_blank" rel="external">http://www.w3cplus.com/css3/transform-basic-property.html</a></li>
+<li><a href="http://css-tricks.com/almanac/properties/p/perspective-origin/" target="_blank" rel="external">http://css-tricks.com/almanac/properties/p/perspective-origin/</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/css3/">css3</a><a href="/tags/transform/">transform</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/01/22/css3-3d-transform/" data-title="CSS3 3D Transform | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/01/20/touch-event/"  title="touch触摸事件">
+ <strong>NEXT:</strong><br/> 
+ <span>touch触摸事件
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#3D位移translate3d()"><span class="toc-number">1.</span> <span class="toc-text">3D位移translate3d()</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#translateZ()与perspective属性的关系"><span class="toc-number">1.1.</span> <span class="toc-text">translateZ()与perspective属性的关系</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D旋转rotate3d()"><span class="toc-number">2.</span> <span class="toc-text">3D旋转rotate3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D缩放scale3d()"><span class="toc-number">3.</span> <span class="toc-text">3D缩放scale3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3D矩形matrix3d()"><span class="toc-number">4.</span> <span class="toc-text">3D矩形matrix3d()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perspective属性"><span class="toc-number">5.</span> <span class="toc-text">perspective属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#perspective取值"><span class="toc-number">5.1.</span> <span class="toc-text">perspective取值</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#perspective定义位置"><span class="toc-number">5.2.</span> <span class="toc-text">perspective定义位置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#perspective-origin属性"><span class="toc-number">6.</span> <span class="toc-text">perspective-origin属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#transform-style属性"><span class="toc-number">7.</span> <span class="toc-text">transform-style属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#backface-visibility属性"><span class="toc-number">8.</span> <span class="toc-text">backface-visibility属性</span></a></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/BOM/" title="BOM">BOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DeviceMotionEvent/" title="DeviceMotionEvent">DeviceMotionEvent<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Transform/" title="Transform">Transform<sup>2</sup></a></li>
+		
+			<li><a href="/tags/animation/" title="animation">animation<sup>1</sup></a></li>
+		
+			<li><a href="/tags/css/" title="css">css<sup>7</sup></a></li>
+		
+			<li><a href="/tags/css3/" title="css3">css3<sup>6</sup></a></li>
+		
+			<li><a href="/tags/html5/" title="html5">html5<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+		
+			<li><a href="/tags/javascript/" title="javascript">javascript<sup>5</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transform/" title="transform">transform<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transform-origin/" title="transform-origin">transform-origin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transition/" title="transition">transition<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件注销/" title="事件注销">事件注销<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件绑定/" title="事件绑定">事件绑定<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/摇一摇/" title="摇一摇">摇一摇<sup>1</sup></a></li>
+		
+			<li><a href="/tags/水平垂直居中/" title="水平垂直居中">水平垂直居中<sup>1</sup></a></li>
+		
+			<li><a href="/tags/百分比/" title="百分比">百分比<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
