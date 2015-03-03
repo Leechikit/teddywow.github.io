@@ -1,0 +1,537 @@
+
+ <!DOCTYPE HTML>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>CSS3 Flexbox布局 | TeddyWow&#39;s blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
+    
+    <meta name="author" content="teddywow">
+    
+    <meta name="description" itemprop="description" content="简单介绍创建对象的7种模式，比较各种模式的优缺点。">
+    
+    
+    
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/pacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/pacman.jpg">
+    
+    <link rel="stylesheet" href="/css/style.css" type="text/css">
+
+</head>
+
+  <body>
+    <header>
+      <div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.svg" alt="TeddyWow&#39;s blog" title="TeddyWow&#39;s blog"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="TeddyWow&#39;s blog">TeddyWow&#39;s blog</a></h1>
+				<h2 class="blog-motto">stay hungry stay foolish</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜单">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+					<li>
+					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="text" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:yoursite.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2015/03/03/css3-flexbox-layout/" title="CSS3 Flexbox布局" itemprop="url">CSS3 Flexbox布局</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="http://yoursite.com" title="teddywow">teddywow</a>
+    </p>
+  <p class="article-time">
+    <time datetime="2015-03-03T14:30:00.000Z" itemprop="datePublished">3月 3 2015</time>
+    更新日期:<time datetime="2015-03-03T14:55:26.000Z" itemprop="dateModified">3月 3 2015</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#伸缩容器属性"><span class="toc-number">1.</span> <span class="toc-text">伸缩容器属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#display"><span class="toc-number">1.1.</span> <span class="toc-text">display</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-direction"><span class="toc-number">1.2.</span> <span class="toc-text">flex-direction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-wrap"><span class="toc-number">1.3.</span> <span class="toc-text">flex-wrap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-flow"><span class="toc-number">1.4.</span> <span class="toc-text">flex-flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content"><span class="toc-number">1.5.</span> <span class="toc-text">justify-content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-items"><span class="toc-number">1.6.</span> <span class="toc-text">align-items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-content"><span class="toc-number">1.7.</span> <span class="toc-text">align-content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伸缩项目属性"><span class="toc-number">2.</span> <span class="toc-text">伸缩项目属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-number">2.1.</span> <span class="toc-text">order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-grow"><span class="toc-number">2.2.</span> <span class="toc-text">flex-grow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-shrink"><span class="toc-number">2.3.</span> <span class="toc-text">flex-shrink</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-basis"><span class="toc-number">2.4.</span> <span class="toc-text">flex-basis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex"><span class="toc-number">2.5.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-self"><span class="toc-number">2.6.</span> <span class="toc-text">align-self</span></a></li></ol></li></ol>
+		</div>
+		
+		<p>Flexbox布局主要思想是让容器有能力让其子项目能够改变其宽度、高度(甚至顺序)，以最佳方式填充可用空间（主要是为了适应所有类型的显示设备和屏幕大小）。Flex容器会使子项目扩展来填满可用空间，或缩小他们以防止溢出容器。</p>
+<p>我们把装载子项目的容器即父元素称为“伸缩容器”，把子项目称为“伸缩项目”。</p>
+<h2 id="伸缩容器属性">伸缩容器属性</h2>
+<h3 id="display">display</h3>
+<pre><code><span class="attribute">display</span><span class="value">:flex | inline-flex;</span>
+</code></pre><p>用来定义伸缩容器，是内联还是块取决于设置的值。他的所有子元素将变成flex文档流，称为伸缩项目。</p>
+<p>当元素定义为伸缩容器时，他的所有子元素在主轴上排列。默认主轴为左右，伸缩项目按文档顺序逐个从左到右一行排列，当伸缩项目主轴上的所占空间大于伸缩容器主轴上的空间时，所有伸缩项目会等比例压缩，使得伸缩项目能在一行排列。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">display</span>:<span class="value"> -webkit-flex</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">display</span>:<span class="value"> flex</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/bNjVQK" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row.png" alt=""></a><br><a href="http://codepen.io/Teddywow/pen/KwBdrb" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-nowrap.png" alt=""></a></p>
+<p>CSS的<code>columns</code>在伸缩容器上没有效果；<code>float</code>、<code>clear</code>和<code>vertical-align</code>在伸缩项目上没有效果。</p>
+<p><code>display:flex</code>有几个版本</p>
+<figure class="highlight"><pre><div class="line"><span class="attribute">display</span><span class="value">: -webkit-box;</span> 			<span class="comment">//Android4.3-, iOS6.1-</span></div><div class="line"><span class="attribute">display</span><span class="value">: -webkit-flex;</span>			<span class="comment">//iOS7.1</span></div><div class="line"><span class="attribute">display</span><span class="value">: -ms-flexbox;</span>			<span class="comment">//IE10</span></div><div class="line"><span class="attribute">display</span><span class="value">: flex;</span>					<span class="comment">//Android4.4+, iOS8+, IE11</span></div></pre></figure>
+
+<h3 id="flex-direction">flex-direction</h3>
+<pre><code><span class="attribute">flex-direction</span>: <span class="string">row | row-reverse | column | column-reverse;</span>
+</code></pre><p>用来创建主轴，以及主轴上伸缩项目的排列方向。</p>
+<ul>
+<li><code>row</code>（默认值）：在“ltr”排版方式下从左向右排列，在“rtl”排版方式下从右向左排列。</li>
+<li><code>row-reverse</code>:与<code>row</code>排列方向相反，在“ltr”排版方式下从右向左排列，在“rtl”排版方式下从左向右排列。</li>
+<li><code>column</code>：从上到下排列</li>
+<li><code>column-reverse</code>：与<code>column</code>排列方向相反，从下到上排列。</li>
+</ul>
+<p>主轴是行，在“ltr”排版方式下伸缩项目向从左到右排列</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> row</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> row</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/qEyOgN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row.png" alt=""></a></p>
+<p>主轴是行，在“ltr”排版方式下伸缩项目从右到左排列</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> row-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> row-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/PwBPVQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row-reverse.png" alt=""></a></p>
+<p>主轴是列，在“ltr”排版方式下伸缩项目从上到下排列</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> column</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> column</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/MYBaLd" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column.png" alt=""></a></p>
+<p>主轴是列，在“ltr”排版方式下伸缩项目从下到上排列</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> column-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> column-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/QwBjoJ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column-reverse.png" alt=""></a></p>
+<h3 id="flex-wrap">flex-wrap</h3>
+<pre><code><span class="attribute">flex-wrap</span>: <span class="string">nowrap | wrap | wrap-reverse;</span>
+</code></pre><p>用来定义伸缩项目单行排列还是多行排列，侧轴的方向决定了新行堆放的方向。</p>
+<ul>
+<li><code>nowrap</code>(默认值)：伸缩项目单行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
+<li><code>wrap</code>：伸缩项目多行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
+<li><code>wrap-reverse</code>：伸缩项目多行排列，“ltr”排版下，伸缩项目从右向左排列；“rtl”排版下，伸缩项目从左到右排列。（和<code>wrap</code>相反）</li>
+</ul>
+<p>伸缩项目单行排列，当伸缩容器空间不够时，伸缩项目会压缩</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> nowrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> nowrap</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/EapVBV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-nowrap.png" alt=""></a></p>
+<p>伸缩项目多行排列，在“ltr”排版方式下从左到右</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> wrap</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/xbJwoV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap.png" alt=""></a></p>
+<p>伸缩项目多行排列，在“ltr”排版方式下从右到左</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> wrap-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> wrap-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/qEyOza" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap-reverse.png" alt=""></a></p>
+<h3 id="flex-flow">flex-flow</h3>
+<pre><code><span class="input"><span class="prompt">flex-flow: &lt;‘flex-direction’&gt;</span> || &lt;‘flex-wrap’&gt;;</span>
+</code></pre><p>是<code>flex-direction</code>和<code>flex-wrap</code>属性的缩写版本。同时定义了伸缩容器的主轴和侧轴。其默认值为<code>row nowrap</code>。</p>
+<h3 id="justify-content">justify-content</h3>
+<pre><code>justify-content: flex-<span class="operator"><span class="keyword">start</span> | flex-<span class="keyword">end</span> | center | <span class="keyword">space</span>-<span class="keyword">between</span> | <span class="keyword">space</span>-around;</span>
+</code></pre><p>定义在主轴上伸缩项目的对齐方式。</p>
+<p>当一行上的所有伸缩项目都不能伸缩或可伸缩但是已经达到其最大长度时，这一属性才会对多余的空间进行分配。当项目溢出某一行时，这一属性也会在项目的对齐上施加一些控制。</p>
+<ul>
+<li>flex-start(默认值)：伸缩项目向一行的起始位置靠齐。</li>
+<li>flex-end：伸缩项目向一行的结束位置靠齐。</li>
+<li>center：伸缩项目向一行的中间位置靠齐。</li>
+<li>space-between：伸缩项目会平均地分布在行里。第一个伸缩项目一行中的最开始位置，最后一个伸缩项目在一行中最终点位置。</li>
+<li>space-around：伸缩项目会平均地分布在行里，两端保留一半的空间。</li>
+</ul>
+<p>伸缩项目向一行的起始位置靠齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/rarxyx" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-start.png" alt=""></a></p>
+<p>伸缩项目向一行的结束位置靠齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/myjVWL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-end.png" alt=""></a></p>
+<p>伸缩项目向一行的中间位置靠齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/gbjPmj" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-center.png" alt=""></a></p>
+<p>伸缩项目会平均地分布在行里。第一个伸缩项目一行中的最开始位置，最后一个伸缩项目在一行中最终点位置。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> space-between</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> space-between</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/MYBKmw" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-between.png" alt=""></a></p>
+<p>伸缩项目会平均地分布在行里，两端保留一半的空间。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> space-around</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> space-around</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/XJBXRK" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-around.png" alt=""></a></p>
+<h3 id="align-items">align-items</h3>
+<pre><code>align-items: flex-<span class="operator"><span class="keyword">start</span> | flex-<span class="keyword">end</span> | center | baseline | stretch;</span>
+</code></pre><p>定义伸缩项目可以在伸缩容器的当前行的侧轴上对齐方式。</p>
+<ul>
+<li>flex-start：伸缩项目在侧轴起点边的外边距紧靠住该行在侧轴起始的边。</li>
+<li>flex-end：伸缩项目在侧轴终点边的外边距靠住该行在侧轴终点的边 。</li>
+<li>center：伸缩项目的外边距盒在该行的侧轴上居中放置。</li>
+<li>baseline：伸缩项目根据他们的基线对齐。</li>
+<li>stretch（默认值）：当伸缩项目没有固定高度时，拉伸填充整个伸缩容器。此值会使项目的外边距盒的尺寸在遵照「min/max-width/height」属性的限制下尽可能接近所在行的尺寸。</li>
+</ul>
+<p>伸缩项目在伸缩容器的当前行的侧轴上顶部对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/jEpWYN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-start.png" alt=""></a></p>
+<p>伸缩项目在伸缩容器的当前行的侧轴上底部对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/NPBxzQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-end.png" alt=""></a></p>
+<p>伸缩项目在伸缩容器的当前行的侧轴上居中对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/jEpWpE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-center.png" alt=""></a></p>
+<p>伸缩项目在伸缩容器的当前行的侧轴上根据基线对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> baseline</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> baseline</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/qEybyV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-baseline.png" alt=""></a></p>
+<p>伸缩项目在伸缩容器的当前行的侧轴上拉伸填充整个伸缩容器</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> stretch</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> stretch</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/vEaLaa" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-stretch.png" alt=""></a></p>
+<p>多行伸缩项目在伸缩容器的各行的侧轴上底部对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/RNBrYY" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-end-multi.png" alt=""></a></p>
+<h3 id="align-content">align-content</h3>
+<pre><code>align-content: flex-<span class="operator"><span class="keyword">start</span> | flex-<span class="keyword">end</span> | center | baseline | stretch;</span>
+</code></pre><p>定义多行伸缩项目各行在伸缩容器里的对齐方式。</p>
+<p>本属性在只有一行的伸缩容器上没有效果。</p>
+<ul>
+<li>flex-start：各行向伸缩容器的起点位置堆叠。</li>
+<li>flex-end：各行向伸缩容器的结束位置堆叠。</li>
+<li>center：各行向伸缩容器的中间位置堆叠。</li>
+<li>space-between：各行在伸缩容器中平均分布，第一行向伸缩容器顶部对齐，最后一行向伸缩容器底部对齐。</li>
+<li>space-around：各行在伸缩容器中平均分布，在两边各有一半的空间。</li>
+<li>stretch（默认值）:各行中没有固定高度的伸缩项目将会伸展以占用剩余的空间。</li>
+</ul>
+<p>各行向伸缩容器的顶部对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/gbjPqE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-start.png" alt=""></a></p>
+<p>各行向伸缩容器的底部对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/QwByob" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-end.png" alt=""></a></p>
+<p>各行向伸缩容器居中对齐</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/ZYjQPB" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-center.png" alt=""></a></p>
+<p>各行在伸缩容器中平均分布，第一行向伸缩容器顶部对齐，最后一行向伸缩容器底部对齐。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> space-between</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> space-between</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/LEBGad" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-between.png" alt=""></a></p>
+<p>各行在伸缩容器中平均分布，在两边各有一半的空间。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> space-around</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> space-around</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/QwByPb" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-around.png" alt=""></a></p>
+<p>各行中没有固定高度的伸缩项目将会伸展以占用剩余的空间。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> stretch</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> stretch</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/ZYjQNL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-stretch.png" alt=""></a></p>
+<h2 id="伸缩项目属性">伸缩项目属性</h2>
+<h3 id="order">order</h3>
+<pre><code><span class="attribute">order</span>: <span class="string">integer;</span>
+</code></pre><p>默认情况下，伸缩项目是按照文档流出现先后顺序排列。然而，“order”属性可以控制伸缩项目在他们的伸缩容器出现的顺序。数字越小越前，可为负数。</p>
+<p>把第三个伸缩项目提到最前面</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.item-3</span><span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">-webkit-order</span>:<span class="value">-<span class="number">1</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">order</span>:<span class="value">-<span class="number">1</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/rareVz" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/order.png" alt=""></a></p>
+<h3 id="flex-grow">flex-grow</h3>
+<pre><code>flex-gro<span class="variable">w:</span> <span class="keyword">number</span>; (默认值为： <span class="number">0</span>)
+</code></pre><p>当伸缩项目主轴上的所占空间小于伸缩容器主轴上的空间时，伸缩容器主轴上仍有剩余空间，这个属性能定义伸缩项目的按比例扩展多少空间占满伸缩容器主轴上的剩余空间，允许为负值。</p>
+<p>第一和第二个伸缩项目宽度不变，第三个占剩余空间的1/3，第四个占剩余空间的2/3</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.item-3</span><span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">-webkit-flex-grow</span>:<span class="value"><span class="number">1</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">flex-grow</span>:<span class="value"><span class="number">1</span></span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.item-4</span><span class="rules">{</span></div><div class="line">  <span class="rule"><span class="attribute">-webkit-flex-grow</span>:<span class="value"><span class="number">2</span></span></span>;</div><div class="line">  <span class="rule"><span class="attribute">flex-grow</span>:<span class="value"><span class="number">2</span></span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/pvZyyN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-grow.png" alt=""></a></p>
+<h3 id="flex-shrink">flex-shrink</h3>
+<pre><code><span class="attribute">flex-shrink</span>: <span class="string">number; (默认值为： 1)</span>
+</code></pre><p>当伸缩项目主轴上的所占空间大于伸缩容器主轴上的空间时，伸缩项目需要压缩才能再伸缩容器主轴上一行排列，这个属性能定义伸缩项目的按比例收缩多少空间，允许为负值。</p>
+<h3 id="flex-basis">flex-basis</h3>
+<pre><code><span class="attribute">flex-basis</span><span class="value">: percentage|auto;</span> (默认值为： <span class="attribute">auto</span>)
+</code></pre><p>这个用来设置伸缩基准值，剩余的空间按比率进行伸缩，不允许为负值。</p>
+<h3 id="flex">flex</h3>
+<pre><code><span class="attribute">flex</span>: <span class="string">none | flex-grow [flex-shrink] [flex-basis];</span>
+</code></pre><p>是“flex-grow”、“flex-shrink”和“flex-basis”三个属性的缩写。其中第二个和第三个参数（flex-shrink、flex-basis）是可选参数。默认值为“0 1 auto”。</p>
+<p>*flex: initial 在有剩余空间的情况下不会有任何变化，但在空间不足的情况下会被收缩到min-width。</p>
+<h3 id="align-self">align-self</h3>
+<pre><code>align-self: auto | flex-<span class="operator"><span class="keyword">start</span> | flex-<span class="keyword">end</span> | center | baseline | stretch;</span>
+</code></pre><p>用来在单独的伸缩项目上覆写默认的对齐方式。</p>
+<p>伸缩容器中伸缩项目在侧轴上向顶部对齐，第二个伸缩项目在侧轴上向底部对齐。</p>
+<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div><div class="line"><span class="class">.item-2</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-self</span>:<span class="value">flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-self</span>:<span class="value">flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
+
+<p><a href="http://codepen.io/Teddywow/pen/LEBNWg" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-self.png" alt=""></a></p>
+<p>参考</p>
+<ul>
+<li><a href="http://www.w3cplus.com/css3/designing-css-layout-with-flexbox.html" target="_blank" rel="external">http://www.w3cplus.com/css3/designing-css-layout-with-flexbox.html</a></li>
+<li><a href="http://www.w3cplus.com/css3/css3-flexbox-layout.html" target="_blank" rel="external">http://www.w3cplus.com/css3/css3-flexbox-layout.html</a></li>
+<li><a href="http://www.w3cplus.com/css3/a-guide-to-flexbox.html" target="_blank" rel="external">http://www.w3cplus.com/css3/a-guide-to-flexbox.html</a></li>
+<li><a href="http://css-tricks.com/snippets/css/a-guide-to-flexbox/" target="_blank" rel="external">http://css-tricks.com/snippets/css/a-guide-to-flexbox/</a></li>
+</ul>
+  
+	</div>
+		<footer class="article-footer clearfix">
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/Flexbox/">Flexbox</a><a href="/tags/CSS3/">CSS3</a><a href="/tags/CSS/">CSS</a>
+  </div>
+
+
+
+
+<div class="article-share" id="share">
+
+  <div data-url="http://yoursite.com/2015/03/03/css3-flexbox-layout/" data-title="CSS3 Flexbox布局 | TeddyWow&#39;s blog" data-tsina="null" class="share clearfix">
+  </div>
+
+</div>
+</footer>   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+
+<div class="next">
+<a href="/2015/02/02/css-unit/"  title="CSS尺寸单位">
+ <strong>NEXT:</strong><br/> 
+ <span>CSS尺寸单位
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">文章目录</strong>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#伸缩容器属性"><span class="toc-number">1.</span> <span class="toc-text">伸缩容器属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#display"><span class="toc-number">1.1.</span> <span class="toc-text">display</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-direction"><span class="toc-number">1.2.</span> <span class="toc-text">flex-direction</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-wrap"><span class="toc-number">1.3.</span> <span class="toc-text">flex-wrap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-flow"><span class="toc-number">1.4.</span> <span class="toc-text">flex-flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content"><span class="toc-number">1.5.</span> <span class="toc-text">justify-content</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-items"><span class="toc-number">1.6.</span> <span class="toc-text">align-items</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-content"><span class="toc-number">1.7.</span> <span class="toc-text">align-content</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#伸缩项目属性"><span class="toc-number">2.</span> <span class="toc-text">伸缩项目属性</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-number">2.1.</span> <span class="toc-text">order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-grow"><span class="toc-number">2.2.</span> <span class="toc-text">flex-grow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-shrink"><span class="toc-number">2.3.</span> <span class="toc-text">flex-shrink</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-basis"><span class="toc-number">2.4.</span> <span class="toc-text">flex-basis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex"><span class="toc-number">2.5.</span> <span class="toc-text">flex</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#align-self"><span class="toc-number">2.6.</span> <span class="toc-text">align-self</span></a></li></ol></li></ol>
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
+<aside class="clearfix">
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">标签</p>
+		<ul class="clearfix">
+		
+			<li><a href="/tags/Animation/" title="Animation">Animation<sup>1</sup></a></li>
+		
+			<li><a href="/tags/BOM/" title="BOM">BOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/CSS/" title="CSS">CSS<sup>10</sup></a></li>
+		
+			<li><a href="/tags/CSS3/" title="CSS3">CSS3<sup>7</sup></a></li>
+		
+			<li><a href="/tags/CSS尺寸单位/" title="CSS尺寸单位">CSS尺寸单位<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DOM/" title="DOM">DOM<sup>1</sup></a></li>
+		
+			<li><a href="/tags/DeviceMotionEvent/" title="DeviceMotionEvent">DeviceMotionEvent<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Flexbox/" title="Flexbox">Flexbox<sup>1</sup></a></li>
+		
+			<li><a href="/tags/HTML5/" title="HTML5">HTML5<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Javascript/" title="Javascript">Javascript<sup>5</sup></a></li>
+		
+			<li><a href="/tags/Transform/" title="Transform">Transform<sup>2</sup></a></li>
+		
+			<li><a href="/tags/Transform-origin/" title="Transform-origin">Transform-origin<sup>1</sup></a></li>
+		
+			<li><a href="/tags/Transition/" title="Transition">Transition<sup>1</sup></a></li>
+		
+			<li><a href="/tags/jQuery/" title="jQuery">jQuery<sup>1</sup></a></li>
+		
+			<li><a href="/tags/this对象/" title="this对象">this对象<sup>1</sup></a></li>
+		
+			<li><a href="/tags/transform/" title="transform">transform<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件注销/" title="事件注销">事件注销<sup>1</sup></a></li>
+		
+			<li><a href="/tags/事件绑定/" title="事件绑定">事件绑定<sup>1</sup></a></li>
+		
+			<li><a href="/tags/创建对象的模式/" title="创建对象的模式">创建对象的模式<sup>1</sup></a></li>
+		
+			<li><a href="/tags/摇一摇/" title="摇一摇">摇一摇<sup>1</sup></a></li>
+		
+		</ul>
+</div>
+
+
+  <div class="rsspart">
+	<a href="null" target="_blank" title="rss">RSS 订阅</a>
+</div>
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<div class="social-font clearfix">
+		
+		<a href="http://weibo.com/lzjjzl" target="_blank" title="weibo"></a>
+		
+		
+		
+		<a href="https://github.com/Teddywow" target="_blank" title="github"></a>
+		
+		
+		
+	</div>
+		<p class="copyright">Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/A-limon/pacman" target="_blank" title="Pacman">Pacman</a> © 2015 
+		
+		<a href="http://yoursite.com" target="_blank" title="teddywow">teddywow</a>
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.1.0.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else
+    {
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina');
+  var html = [
+  '<a href="#" class="overlay" id="qrcode"></a>',
+  '<div class="qrcode clearfix"><span>扫描二维码分享到微信朋友圈</span><a class="qrclose" href="#share"></a><strong>Loading...Please wait</strong><img id="qrcode-pic" data-src="http://s.jiathis.com/qrcode.php?url=' + encodedUrl + '"/></div>',
+  '<a href="#textlogo" class="article-back-to-top" title="Top"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="QRcode"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="Weibo"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+  $('.article-share-qrcode').click(function(){
+    var imgSrc = $('#qrcode-pic').attr('data-src');
+    $('#qrcode-pic').attr('src', imgSrc);
+    $('#qrcode-pic').load(function(){
+        $('.qrcode strong').text(' ');
+    });
+  });
+});     
+</script>
+
+
+
+
+
+
+  </body>
+</html>
