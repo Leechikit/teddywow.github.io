@@ -74,7 +74,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-03-03T14:30:00.000Z" itemprop="datePublished">3月 3 2015</time>
-    更新日期:<time datetime="2015-03-03T14:55:26.000Z" itemprop="dateModified">3月 3 2015</time>
+    更新日期:<time datetime="2015-03-03T15:18:34.000Z" itemprop="dateModified">3月 3 2015</time>
     
   </p>
 </header>
@@ -104,47 +104,26 @@
 <pre><code><span class="attribute">flex-direction</span>: <span class="string">row | row-reverse | column | column-reverse;</span>
 </code></pre><p>用来创建主轴，以及主轴上伸缩项目的排列方向。</p>
 <ul>
-<li><code>row</code>（默认值）：在“ltr”排版方式下从左向右排列，在“rtl”排版方式下从右向左排列。</li>
-<li><code>row-reverse</code>:与<code>row</code>排列方向相反，在“ltr”排版方式下从右向左排列，在“rtl”排版方式下从左向右排列。</li>
-<li><code>column</code>：从上到下排列</li>
-<li><code>column-reverse</code>：与<code>column</code>排列方向相反，从下到上排列。</li>
+<li>row（默认值）：在“ltr”排版方式下从左向右排列，在“rtl”排版方式下从右向左排列。</li>
+<li>row-reverse:与row排列方向相反，在“ltr”排版方式下从右向左排列，在“rtl”排版方式下从左向右排列。</li>
+<li>column：从上到下排列</li>
+<li>column-reverse：与column排列方向相反，从下到上排列。</li>
 </ul>
-<p>主轴是行，在“ltr”排版方式下伸缩项目向从左到右排列</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> row</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> row</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/qEyOgN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row.png" alt=""></a></p>
-<p>主轴是行，在“ltr”排版方式下伸缩项目从右到左排列</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> row-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> row-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/PwBPVQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row-reverse.png" alt=""></a></p>
-<p>主轴是列，在“ltr”排版方式下伸缩项目从上到下排列</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> column</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> column</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/MYBaLd" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column.png" alt=""></a></p>
-<p>主轴是列，在“ltr”排版方式下伸缩项目从下到上排列</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-direction</span>:<span class="value"> column-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-direction</span>:<span class="value"> column-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/QwBjoJ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column-reverse.png" alt=""></a></p>
+<p><code>flex-direction: row;</code>主轴是行，在“ltr”排版方式下伸缩项目向从左到右排列<br><a href="http://codepen.io/Teddywow/pen/qEyOgN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row.png" alt=""></a></p>
+<p><code>flex-direction: row-reverse;</code>主轴是行，在“ltr”排版方式下伸缩项目从右到左排列<br><a href="http://codepen.io/Teddywow/pen/PwBPVQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-row-reverse.png" alt=""></a></p>
+<p><code>flex-direction: column;</code>主轴是列，在“ltr”排版方式下伸缩项目从上到下排列<br><a href="http://codepen.io/Teddywow/pen/MYBaLd" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column.png" alt=""></a></p>
+<p><code>flex-direction: column-reverse;</code>主轴是列，在“ltr”排版方式下伸缩项目从下到上排列<br><a href="http://codepen.io/Teddywow/pen/QwBjoJ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-direction-column-reverse.png" alt=""></a></p>
 <h3 id="flex-wrap">flex-wrap</h3>
 <pre><code><span class="attribute">flex-wrap</span>: <span class="string">nowrap | wrap | wrap-reverse;</span>
 </code></pre><p>用来定义伸缩项目单行排列还是多行排列，侧轴的方向决定了新行堆放的方向。</p>
 <ul>
-<li><code>nowrap</code>(默认值)：伸缩项目单行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
-<li><code>wrap</code>：伸缩项目多行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
-<li><code>wrap-reverse</code>：伸缩项目多行排列，“ltr”排版下，伸缩项目从右向左排列；“rtl”排版下，伸缩项目从左到右排列。（和<code>wrap</code>相反）</li>
+<li>nowrap(默认值)：伸缩项目单行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
+<li>wrap：伸缩项目多行排列，“ltr”排版下，伸缩项目从左到右排列；“rtl”排版上伸缩项目从右向左排列。</li>
+<li>wrap-reverse：伸缩项目多行排列，“ltr”排版下，伸缩项目从右向左排列；“rtl”排版下，伸缩项目从左到右排列。（和wrap相反）</li>
 </ul>
-<p>伸缩项目单行排列，当伸缩容器空间不够时，伸缩项目会压缩</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> nowrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> nowrap</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/EapVBV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-nowrap.png" alt=""></a></p>
-<p>伸缩项目多行排列，在“ltr”排版方式下从左到右</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> wrap</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/xbJwoV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap.png" alt=""></a></p>
-<p>伸缩项目多行排列，在“ltr”排版方式下从右到左</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value"> wrap-reverse</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value"> wrap-reverse</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/qEyOza" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap-reverse.png" alt=""></a></p>
+<p><code>flex-wrap: nowrap;</code>伸缩项目单行排列，当伸缩容器空间不够时，伸缩项目会压缩<br><a href="http://codepen.io/Teddywow/pen/EapVBV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-nowrap.png" alt=""></a></p>
+<p><code>flex-wrap: wrap;</code>伸缩项目多行排列，在“ltr”排版方式下从左到右<br><a href="http://codepen.io/Teddywow/pen/xbJwoV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap.png" alt=""></a></p>
+<p><code>flex-wrap: wrap-reverse;</code>伸缩项目多行排列，在“ltr”排版方式下从右到左<br><a href="http://codepen.io/Teddywow/pen/qEyOza" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/flex-wrap-wrap-reverse.png" alt=""></a></p>
 <h3 id="flex-flow">flex-flow</h3>
 <pre><code><span class="input"><span class="prompt">flex-flow: &lt;‘flex-direction’&gt;</span> || &lt;‘flex-wrap’&gt;;</span>
 </code></pre><p>是<code>flex-direction</code>和<code>flex-wrap</code>属性的缩写版本。同时定义了伸缩容器的主轴和侧轴。其默认值为<code>row nowrap</code>。</p>
@@ -159,26 +138,11 @@
 <li>space-between：伸缩项目会平均地分布在行里。第一个伸缩项目一行中的最开始位置，最后一个伸缩项目在一行中最终点位置。</li>
 <li>space-around：伸缩项目会平均地分布在行里，两端保留一半的空间。</li>
 </ul>
-<p>伸缩项目向一行的起始位置靠齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/rarxyx" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-start.png" alt=""></a></p>
-<p>伸缩项目向一行的结束位置靠齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/myjVWL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-end.png" alt=""></a></p>
-<p>伸缩项目向一行的中间位置靠齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/gbjPmj" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-center.png" alt=""></a></p>
-<p>伸缩项目会平均地分布在行里。第一个伸缩项目一行中的最开始位置，最后一个伸缩项目在一行中最终点位置。</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> space-between</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> space-between</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/MYBKmw" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-between.png" alt=""></a></p>
-<p>伸缩项目会平均地分布在行里，两端保留一半的空间。</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-justify-content</span>:<span class="value"> space-around</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">justify-content</span>:<span class="value"> space-around</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/XJBXRK" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-around.png" alt=""></a></p>
+<p><code>justify-content: flex-start;</code>伸缩项目向一行的起始位置靠齐<br><a href="http://codepen.io/Teddywow/pen/rarxyx" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-start.png" alt=""></a></p>
+<p><code>justify-content: flex-end;</code>伸缩项目向一行的结束位置靠齐<br><a href="http://codepen.io/Teddywow/pen/myjVWL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-flex-end.png" alt=""></a></p>
+<p><code>justify-content: center;</code>伸缩项目向一行的中间位置靠齐<br><a href="http://codepen.io/Teddywow/pen/gbjPmj" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-center.png" alt=""></a></p>
+<p><code>justify-content: space-between;</code>伸缩项目会平均地分布在行里。第一个伸缩项目一行中的最开始位置，最后一个伸缩项目在一行中最终点位置。<br><a href="http://codepen.io/Teddywow/pen/MYBKmw" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-between.png" alt=""></a></p>
+<p><code>justify-content: space-around;</code>伸缩项目会平均地分布在行里，两端保留一半的空间。<br><a href="http://codepen.io/Teddywow/pen/XJBXRK" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/justify-content-space-around.png" alt=""></a></p>
 <h3 id="align-items">align-items</h3>
 <pre><code>align-items: flex-<span class="operator"><span class="keyword">start</span> | flex-<span class="keyword">end</span> | center | baseline | stretch;</span>
 </code></pre><p>定义伸缩项目可以在伸缩容器的当前行的侧轴上对齐方式。</p>
@@ -189,26 +153,11 @@
 <li>baseline：伸缩项目根据他们的基线对齐。</li>
 <li>stretch（默认值）：当伸缩项目没有固定高度时，拉伸填充整个伸缩容器。此值会使项目的外边距盒的尺寸在遵照「min/max-width/height」属性的限制下尽可能接近所在行的尺寸。</li>
 </ul>
-<p>伸缩项目在伸缩容器的当前行的侧轴上顶部对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/jEpWYN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-start.png" alt=""></a></p>
-<p>伸缩项目在伸缩容器的当前行的侧轴上底部对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/NPBxzQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-end.png" alt=""></a></p>
-<p>伸缩项目在伸缩容器的当前行的侧轴上居中对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/jEpWpE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-center.png" alt=""></a></p>
-<p>伸缩项目在伸缩容器的当前行的侧轴上根据基线对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> baseline</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> baseline</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/qEybyV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-baseline.png" alt=""></a></p>
-<p>伸缩项目在伸缩容器的当前行的侧轴上拉伸填充整个伸缩容器</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> stretch</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> stretch</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/vEaLaa" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-stretch.png" alt=""></a></p>
+<p><code>align-items: flex-start;</code>伸缩项目在伸缩容器的当前行的侧轴上顶部对齐<br><a href="http://codepen.io/Teddywow/pen/jEpWYN" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-start.png" alt=""></a></p>
+<p><code>align-items: flex-end;</code>伸缩项目在伸缩容器的当前行的侧轴上底部对齐<br><a href="http://codepen.io/Teddywow/pen/NPBxzQ" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-flex-end.png" alt=""></a></p>
+<p><code>align-items: center;</code>伸缩项目在伸缩容器的当前行的侧轴上居中对齐<br><a href="http://codepen.io/Teddywow/pen/jEpWpE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-center.png" alt=""></a></p>
+<p><code>align-items: baseline;</code>伸缩项目在伸缩容器的当前行的侧轴上根据基线对齐<br><a href="http://codepen.io/Teddywow/pen/qEybyV" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-baseline.png" alt=""></a></p>
+<p><code>align-items: stretch;</code>伸缩项目在伸缩容器的当前行的侧轴上拉伸填充整个伸缩容器<br><a href="http://codepen.io/Teddywow/pen/vEaLaa" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-items-stretch.png" alt=""></a></p>
 <p>多行伸缩项目在伸缩容器的各行的侧轴上底部对齐</p>
 <figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">flex-wrap</span>:<span class="value">wrap</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-items</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
 
@@ -225,30 +174,12 @@
 <li>space-around：各行在伸缩容器中平均分布，在两边各有一半的空间。</li>
 <li>stretch（默认值）:各行中没有固定高度的伸缩项目将会伸展以占用剩余的空间。</li>
 </ul>
-<p>各行向伸缩容器的顶部对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> flex-start</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/gbjPqE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-start.png" alt=""></a></p>
-<p>各行向伸缩容器的底部对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> flex-end</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/QwByob" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-end.png" alt=""></a></p>
-<p>各行向伸缩容器居中对齐</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> center</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> center</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/ZYjQPB" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-center.png" alt=""></a></p>
-<p>各行在伸缩容器中平均分布，第一行向伸缩容器顶部对齐，最后一行向伸缩容器底部对齐。</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> space-between</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> space-between</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/LEBGad" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-between.png" alt=""></a></p>
-<p>各行在伸缩容器中平均分布，在两边各有一半的空间。</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> space-around</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> space-around</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/QwByPb" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-around.png" alt=""></a></p>
-<p>各行中没有固定高度的伸缩项目将会伸展以占用剩余的空间。</p>
-<figure class="highlight"><pre><div class="line"><span class="class">.container</span><span class="rules">{</span></div><div class="line">	<span class="rule"><span class="attribute">-webkit-align-content</span>:<span class="value"> stretch</span></span>;</div><div class="line">	<span class="rule"><span class="attribute">align-content</span>:<span class="value"> stretch</span></span>;</div><div class="line"><span class="rule">}</span></div></pre></figure>
-
-<p><a href="http://codepen.io/Teddywow/pen/ZYjQNL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-stretch.png" alt=""></a></p>
+<p><code>align-content: flex-start;</code>各行向伸缩容器的顶部对齐<br><a href="http://codepen.io/Teddywow/pen/gbjPqE" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-start.png" alt=""></a></p>
+<p><code>align-content: flex-end;</code>各行向伸缩容器的底部对齐<br><a href="http://codepen.io/Teddywow/pen/QwByob" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-flex-end.png" alt=""></a></p>
+<p><code>align-content: center;</code>各行向伸缩容器居中对齐<br><a href="http://codepen.io/Teddywow/pen/ZYjQPB" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-center.png" alt=""></a></p>
+<p><code>align-content: space-between;</code>各行在伸缩容器中平均分布，第一行向伸缩容器顶部对齐，最后一行向伸缩容器底部对齐。<br><a href="http://codepen.io/Teddywow/pen/LEBGad" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-between.png" alt=""></a></p>
+<p><code>align-content: space-around;</code>各行在伸缩容器中平均分布，在两边各有一半的空间。<br><a href="http://codepen.io/Teddywow/pen/QwByPb" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-space-around.png" alt=""></a></p>
+<p><code>align-content: stretch;</code>各行中没有固定高度的伸缩项目将会伸展以占用剩余的空间。<br><a href="http://codepen.io/Teddywow/pen/ZYjQNL" target="_blank" rel="external"><img src="/images/css3-flexbox-layout/align-content-stretch.png" alt=""></a></p>
 <h2 id="伸缩项目属性">伸缩项目属性</h2>
 <h3 id="order">order</h3>
 <pre><code><span class="attribute">order</span>: <span class="string">integer;</span>
