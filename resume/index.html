@@ -1,0 +1,261 @@
+<!doctype html>
+ <html>
+    <head>
+    <title>wap</title>
+    <meta charset="utf-8">
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="Author" content="lizijie_gz none"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <!-- uc强制竖屏 -->
+    <meta name="screen-orientation" content="portrait">
+    <!-- QQ强制竖屏 -->
+    <meta name="x5-orientation" content="portrait">
+    <!-- UC强制全屏 -->
+    <meta name="full-screen" content="yes">
+    <!-- QQ强制全屏 -->
+    <meta name="x5-fullscreen" content="true">
+    <!-- windows phone 点击无高光 -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <link rel="stylesheet" type="text/css" href="css/style.css?t=2014">
+    </head>
+    <body>
+        <div class="g-doc">
+            <div id="loading">
+                <div id="caseBlanche">
+                  <div id="rond">
+                    <div id="test"></div>
+                  </div>
+                  <div id="load">
+                    <div class="m-percentbox"><i class="percent">0</i> %</div>
+                  </div>
+                </div>
+            </div>
+            <div id="wrapper">
+            	<div id="scroller">
+            		<section class="m-page-5" id="Jpage5">
+                        <div class="g-center">
+                            <div class="u-capsule"></div>
+                            <div class="u-robot-1"></div>
+                            <div class="u-robot-2"></div>
+                            <div class="u-robot-3"></div>
+                            <div class="u-boom u-boom-1"></div>
+                            <div class="u-boom u-boom-2"></div>
+                            <div class="u-boom u-boom-3"></div>
+                            <svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" id="p5-svg">
+                                <g>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M8,0 L200,100"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M200,100 L8,0"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M8,5 L190,100"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M190,100 L8,5"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M0,200 L200,100"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M200,100 L0,200"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M0,195 L190,100"></path>
+                                    <path stroke="#a2b53d" stroke-width="2px" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="null" fill="none" d="M190,100 L0,195"></path>
+                                </g>
+                            </svg>
+                        </div>
+            		</section>
+            		<section class="m-page-4" id="Jpage4">
+                        <div class="g-center">
+                            <div class="m-planet-1"></div>
+                            <div class="m-planet-2"></div>
+                            <div class="m-planet-3"></div>   
+                        </div>
+            		</section>
+            		<section class="m-page-3" id="Jpage3">
+                        <div class="g-center">
+                            <div class="m-moon">
+                                <div class="m-tunnel-1 m-tunnel"></div>
+                                <div class="m-tunnel-2 m-tunnel"></div>
+                                <div class="m-tunnel-3 m-tunnel"></div>
+                                <div class="u-boom-1 u-boom"></div>
+                                <div class="u-boom-2 u-boom"></div>
+                                <div class="u-boom-3 u-boom"></div>
+                                <div class="u-tunnel-4 u-tunnelB"></div>
+                                <div class="u-tunnel-5 u-tunnelB"></div>
+                            </div>   
+                        </div>
+            		</section>
+            		<section class="m-page-2" id="Jpage2">
+                        <div class="g-center">
+                            <div class="m-earth">
+                                <div class="u-hand-left"></div>
+                                <div class="u-hand-right"></div>
+                            </div>
+                        </div>
+            		</section>
+            		<section class="m-page-1" id="Jpage1">
+                        <div class="m-landBox">
+                            <div class="u-land"></div>
+                            <div class="u-ball-1"></div>
+                            <div class="u-ball-2"></div>
+                            <div class="u-ball-3"></div>
+                        </div>  
+            		</section>
+                    <!-- <canvas id="starCanvas"></canvas> -->
+                    <svg id="starSvg"></svg>
+            	</div> 
+                <div class="m-rocket" id="rocket">
+                    <span class="u-fire"></span>
+                    <div class="u-bomb-1"></div>
+                    <div class="u-bomb-2"></div>
+                    <div class="u-bomb-3"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script src="js/oScroll.js" charset="utf-8"></script>
+    <script>
+    var rocket=document.getElementById('rocket'),
+        snap=document.querySelectorAll('#scroller>section'),
+        loading=document.getElementById('loading'),
+        maxH=document.documentElement.clientHeight,
+        img_path="images/",
+        img_list=['ball1','ball2','ball3','bomb','boom','boom1','capsule','earth','earthhandl','earthhandr','fire','land','moon','planet1','planet2','planet3','robot1','robot2','rocket'];
+    loading.style.height=maxH+"px";
+    for(var i = 0; i < img_list.length; i++){
+        img_list[i] = img_path+img_list[i]+".png";
+    }
+    document.addEventListener('DOMContentLoaded', imgLoader(img_list,loadProcess), false);
+    /*图片预加载*/
+    function loadImage(path,callback){
+        var img=new Image();
+        /*if(img.complete){
+            callback();
+        }else{*/
+            img.onload=function(){
+                img.onload=null;
+                callback();
+            }
+        /*}*/
+        img.src=path;
+    }
+    function imgLoader(sources,callback){
+        var len=img_list.length,
+            count=0;
+        while(img_list.length){
+            loadImage(img_list.shift(),function(){
+                callback(++count,len,hideLoading);
+            })
+        }
+    }
+    /*加载进度*/
+    function loadProcess(count,len,callback){
+        var percent=Math.round((count)/len*100),
+            now=document.querySelector('#loading .percent'),
+            num=now.innerHTML,
+            timer;
+        timer=setInterval(function(){
+            now.innerHTML=++num;
+            if(num>=percent){
+                clearInterval(timer);
+            }
+            if(count>=len&&num>=percent){
+                callback();
+            }
+        },10);
+    }
+    /*加载完成*/
+    function hideLoading(){
+        document.getElementById('loading').style.display='none';
+        document.getElementById('wrapper').style.display='block';
+        var myScroll=new oScroll({
+            wrapper:document.getElementById('wrapper'),
+            snap:snap,
+            currPage:4,
+            speed:2000,
+            scrollerHeight:maxH,
+            ontransitionStart:function(index,elem,direction){
+                removeClass(snap[index],'f-animate');
+                if(direction==="up"){
+                    addClass(snap[index-1],'f-animate');
+                    switch(index){
+                        case 1:
+                            addClass(rocket,'s-attack-2');
+                            addClass(rocket,'s-detour');
+                            break;
+                        case 2:
+                            removeClass(rocket,'s-attack-1');
+                            break;
+                        case 3:
+                            addClass(rocket,'s-attack-1');
+                            break;
+                        case 4:
+                            addClass(rocket,'s-start');
+                            removeClass(rocket,'s-end');
+                            addClass(snap[4],'f-farView');
+                            break;
+                    }
+                }else if(direction==="down"){
+                    addClass(snap[index+1],'f-animate');
+                    switch(index){
+                        case 0:
+                            removeClass(rocket,'s-attack-2');
+                            removeClass(rocket,'s-detour');
+                            break;
+                        case 1:
+                            addClass(rocket,'s-attack-1');
+                            break;
+                        case 2:
+                            removeClass(rocket,'s-attack-1');
+                            break;
+                        case 3:
+                            removeClass(rocket,'s-start');
+                            addClass(rocket,'s-end');
+                            removeClass(snap[4],'f-farView');
+                            break;
+                    }
+                }
+            }
+        });
+        loadJs("js/drawStar1.js");
+    }
+    /*动态加载js*/
+    function loadJs(url){
+        var myScript= document.createElement("script");
+        myScript.type = "text/javascript";
+        myScript.charset="utf-8";
+        myScript.src=url;
+        document.body.appendChild(myScript);
+    }
+    /*增加类*/
+	function addClass(o, className){
+	    if(!o.className.match(new RegExp('(\\s|^)'+className+'(\\s|$)'))) {
+	    	o.className += " "+className;
+	    }
+	    return o;
+	}
+	/*删除类*/
+	function removeClass(o, className){
+        var names = o.className.split(/\s+/);
+        for ( var i=0;i < names.length;i++){
+            if(names[i] == className) delete names[i];
+        }
+        o.className = names.join(" ");
+        return o;
+    }
+    /*点击行星变大*/
+    function planetExtend(){
+        var page4=document.getElementById('Jpage4'),
+            planets=page4.querySelectorAll('.g-center>div');
+        for(var i=0,len=planets.length;i<len;i++){
+            (function(i){
+                planets[i].addEventListener('click',function(e){
+                    var index=i+1;
+                    e.stopPropagation();
+                    addClass(this,'s-extend-'+index);
+                },false);
+            })(i)
+        }
+        page4.addEventListener('touchstart',function(e){
+            for(var i=0,len=planets.length;i<len;i++){    
+                var index=i+1;
+                removeClass(planets[i],'s-extend-'+index);
+            }
+        })
+    }
+    planetExtend();
+    </script>
+</html>
